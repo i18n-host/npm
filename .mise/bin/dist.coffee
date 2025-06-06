@@ -24,7 +24,10 @@ if existsSync src
   if existsSync lib
     rmSync lib, {recursive:true}
 
-  await $'./build.sh'
+  if existsSync 'build.sh'
+    await $'./build.sh'
+  else
+    await $'bun x cep -c src -o lib'
 
   if existsSync RUN_SH
     await $"#{RUN_SH}"
