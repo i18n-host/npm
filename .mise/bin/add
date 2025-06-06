@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -ex
+for i in "$@"; do
+  deno add jsr:$i
+  bun i $i
+done
+

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@3-/coffee_plus": "^0.1.26",
+    "@3-/mdt": "^0.1.5",
+    "coffeescript": "^2.7.0"
+  },
+  "version": "0.0.4"
+}
