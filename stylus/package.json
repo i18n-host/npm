@@ -1,6 +1,6 @@
 {
   "name": "@~8/stylus",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/i18n-host/npm.git"
@@ -16,7 +16,7 @@
   ],
   "scripts": {},
   "type": "module",
-  "dependencies": {
+  "peerDependencies": {
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.4",
     "postcss-styl": "^0.12.3"
