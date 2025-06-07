@@ -2,3 +2,9 @@
 
 stylus to css with support [css nesting](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting)
 
+<+ ./test.coffee >
+
+output:
+
+<+ ./out.txt >
+
