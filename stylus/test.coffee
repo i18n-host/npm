@@ -2,5 +2,14 @@
 
 import stylus from './lib/mod.js'
 
-console.log stylus()
+stylusCode = '''
+a
+  transform scale(0.5)
+  xxx x
+  xbbb:w
+  appearance none
+  &:hover
+    color #fe4334
+'''
 
+console.log stylus stylusCode

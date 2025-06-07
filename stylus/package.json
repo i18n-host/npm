@@ -15,5 +15,10 @@
     "*"
   ],
   "scripts": {},
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.4",
+    "postcss-styl": "^0.12.3"
+  }
 }
