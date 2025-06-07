@@ -2,6 +2,7 @@
 
 stylus to css with support [css nesting](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting)
 
+```coffee
 #!/usr/bin/env coffee
 
 import stylus from './lib/mod.js'
@@ -17,9 +18,11 @@ a
 '''
 
 console.log stylus stylusCode
+```
 
 output:
 
+```css
 a{
   transform: scale(0.5);
   xxx: x;
@@ -29,4 +32,4 @@ a{
           appearance: none;
   &:hover{
     color: #fe4334}}
-
+```
