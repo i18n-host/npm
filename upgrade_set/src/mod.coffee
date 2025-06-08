@@ -21,7 +21,9 @@ zone_id_li = (await Promise.all(
 
 content = JSON.stringify(TXT)
 
-# https://github.com/i18n-site/rust/releases/download/i18n.site
+# https://github.com/up51/v
+# https://
+# github.com/i18n-site/rust/releases/download/i18n.site
 # /0.2.104/x86_64-pc-windows-msvc.tar
 
 # ver
