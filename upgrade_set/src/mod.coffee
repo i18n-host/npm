@@ -4,7 +4,7 @@
 
 {GET, POST, DELETE} = cf
 
-{HOST_LI} = process.env
+{HOST_LI,TXT} = process.env
 
 HOST_LI = HOST_LI.split(' ')
 
@@ -12,11 +12,12 @@ zone_id_li = (await Promise.all(
   HOST_LI.map (i)=>GET('?name='+i)
 )).map ([i])=>i.id
 
-project = 'i18'
-channel = 'nightly'
-content = '1234'
+[
+  project
+  channel
+] = process.argv.slice(2)
 
-content = JSON.stringify(content)
+content = JSON.stringify(TXT)
 
 await Promise.allSettled HOST_LI.map (host, pos)=>
   id = zone_id_li[pos]

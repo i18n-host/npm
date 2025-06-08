@@ -9,4 +9,4 @@ set -o allexport
 set +o allexport
 set -x
 
-./src/mod.coffee
+TXT="1 x 2l3232" ./src/mod.coffee i18 nightly
