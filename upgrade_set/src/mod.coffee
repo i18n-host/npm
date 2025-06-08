@@ -21,6 +21,11 @@ zone_id_li = (await Promise.all(
 
 content = JSON.stringify(TXT)
 
+# https://github.com/i18n-site/rust/releases/download/i18n.site
+# /0.2.104/x86_64-pc-windows-msvc.tar
+
+# ver
+
 await Promise.allSettled HOST_LI.map (host, pos)=>
   setTXT(
     project+'-'+channel
