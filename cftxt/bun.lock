@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "@~8/upgrade_set",
+      "name": "@~8/cftxt",
       "dependencies": {
         "@3-/cf": "^0.1.17",
       },
