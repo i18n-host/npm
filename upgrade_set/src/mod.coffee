@@ -8,6 +8,26 @@
 
 HOST_LI = HOST_LI.split(' ')
 
+
+setTxt = (prefix, host, id, content, ttl=600)=>
+  name = prefix + '.' + host
+  console.log name
+  li = await GET "#{id}/dns_records?type=TXT&name="+name
+  await Promise.all li.map (i)=>
+    DELETE(
+      id+'/dns_records/'+i.id
+    )
+  POST(
+    id+'/dns_records'
+    {
+      type: 'TXT'
+      name
+      content
+      ttl
+    }
+  )
+
+
 zone_id_li = (await Promise.all(
   HOST_LI.map (i)=>GET('?name='+i)
 )).map ([i])=>i.id
@@ -20,24 +40,12 @@ zone_id_li = (await Promise.all(
 content = JSON.stringify(TXT)
 
 await Promise.allSettled HOST_LI.map (host, pos)=>
-  id = zone_id_li[pos]
-  name =  project+'-'+channel+'.'+host
-  console.log name
-  li = await GET "#{id}/dns_records?type=TXT&name="+name
-  await Promise.all li.map (i)=>
-    DELETE(
-      id+'/dns_records/'+i.id
-    )
-  await POST(
-    id+'/dns_records'
-    {
-      type: 'TXT'
-      name
-      content
-      ttl: 600
-    }
+  setTxt(
+    project+'-'+channel
+    host
+    zone_id_li[pos]
+    content
   )
-  return
 
 
 # console.log await GET('?name=018007.xyz')
