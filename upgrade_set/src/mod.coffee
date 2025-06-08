@@ -8,6 +8,10 @@
 
 HOST_LI = HOST_LI.split(' ')
 
+[
+  project
+  channel
+] = process.argv.slice(2)
 
 setTxt = (prefix, host, id, content, ttl=600)=>
   name = prefix + '.' + host
@@ -31,11 +35,6 @@ setTxt = (prefix, host, id, content, ttl=600)=>
 zone_id_li = (await Promise.all(
   HOST_LI.map (i)=>GET('?name='+i)
 )).map ([i])=>i.id
-
-[
-  project
-  channel
-] = process.argv.slice(2)
 
 content = JSON.stringify(TXT)
 
