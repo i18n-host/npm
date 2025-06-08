@@ -4,10 +4,12 @@
 
 {HOST_LI} = process.env
 
-HOST_LI = HOST_LI.split(' ')
 {GET} = cf
 
-console.log HOST_LI
+zone_id_li = await Promise.all HOST_LI.split(' ').map (i)=>GET('?name='+i)
+
+console.log zone_id_li
+
 # console.log await GET('?name=018007.xyz')
 # // cf.get)
 #
