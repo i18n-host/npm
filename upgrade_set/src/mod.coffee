@@ -4,13 +4,30 @@
 
 {HOST_LI} = process.env
 
-{GET} = cf
-
+{GET, POST} = cf
+HOST_LI = HOST_LI.split(' ')
 zone_id_li = (await Promise.all(
-  HOST_LI.split(' ').map (i)=>GET('?name='+i)
+  HOST_LI.map (i)=>GET('?name='+i)
 )).map ([i])=>i.id
 
-console.log zone_id_li
+project = 'i18'
+channel = 'nightly'
+content = '123'
+
+content = JSON.stringify(content)
+
+for host, pos in HOST_LI
+  id = zone_id_li[pos]
+  console.log host
+  console.log await POST(
+    id+'/dns_records'
+    {
+      type: 'TXT'
+      name: project+'-'+channel+'.'+host
+      content
+      ttl: 600
+    }
+  )
 
 # console.log await GET('?name=018007.xyz')
 # // cf.get)
