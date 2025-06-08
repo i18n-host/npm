@@ -18,12 +18,12 @@ content = '1234'
 
 content = JSON.stringify(content)
 
-for host, pos in HOST_LI
+await Promise.allSettled HOST_LI.map (host, pos)=>
   id = zone_id_li[pos]
   name =  project+'-'+channel+'.'+host
   console.log name
   li = await GET "#{id}/dns_records?type=TXT&name="+name
-  console.log await Promise.all li.map (i)=>
+  await Promise.all li.map (i)=>
     DELETE(
       id+'/dns_records/'+i.id
     )
@@ -36,6 +36,7 @@ for host, pos in HOST_LI
       ttl: 600
     }
   )
+  return
 
 
 # console.log await GET('?name=018007.xyz')
