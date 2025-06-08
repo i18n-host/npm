@@ -1,11 +1,11 @@
 {
-  "name": "@~8/upset",
+  "name": "@~8/upgrade_set",
   "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/i18n-host/npm.git"
   },
-  "homepage": "https://github.com/i18n-host/npm/tree/dev/upset",
+  "homepage": "https://github.com/i18n-host/npm/tree/dev/upgrade_set",
   "author": "i18n.host@gmail.com",
   "license": "MulanPSL-2.0",
   "exports": {
