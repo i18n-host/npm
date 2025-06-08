@@ -1,7 +1,7 @@
 #!/usr/bin/env coffee
 
 > @3-/cf
-
+  @3-/cf/setTXT.js
 {GET, POST, DELETE} = cf
 
 {HOST_LI,TXT} = process.env
@@ -13,23 +13,6 @@ HOST_LI = HOST_LI.split(' ')
   channel
 ] = process.argv.slice(2)
 
-setTxt = (prefix, host, id, content, ttl=600)=>
-  name = prefix + '.' + host
-  console.log name
-  li = await GET "#{id}/dns_records?type=TXT&name="+name
-  await Promise.all li.map (i)=>
-    DELETE(
-      id+'/dns_records/'+i.id
-    )
-  POST(
-    id+'/dns_records'
-    {
-      type: 'TXT'
-      name
-      content
-      ttl
-    }
-  )
 
 
 zone_id_li = (await Promise.all(
@@ -39,7 +22,7 @@ zone_id_li = (await Promise.all(
 content = JSON.stringify(TXT)
 
 await Promise.allSettled HOST_LI.map (host, pos)=>
-  setTxt(
+  setTXT(
     project+'-'+channel
     host
     zone_id_li[pos]

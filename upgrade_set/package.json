@@ -17,6 +17,6 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
-    "@3-/cf": "^0.1.15"
+    "@3-/cf": "^0.1.17"
   }
 }
