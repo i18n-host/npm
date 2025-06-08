@@ -6,7 +6,9 @@
 
 {GET} = cf
 
-zone_id_li = await Promise.all HOST_LI.split(' ').map (i)=>GET('?name='+i)
+zone_id_li = (await Promise.all(
+  HOST_LI.split(' ').map (i)=>GET('?name='+i)
+)).map ([i])=>i.id
 
 console.log zone_id_li
 
