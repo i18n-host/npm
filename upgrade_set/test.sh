@@ -5,6 +5,7 @@ cd $DIR
 set -e
 set -o allexport
 . ../../conf/env/cf.env
+. ../../conf/i18/upgrade.sh
 set +o allexport
 set -x
 

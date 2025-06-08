@@ -2,8 +2,13 @@
 
 > @3-/cf
 
+{HOST_LI} = process.env
 
-console.log await cf.get()
+HOST_LI = HOST_LI.split(' ')
+{GET} = cf
+
+console.log HOST_LI
+# console.log await GET('?name=018007.xyz')
 # // cf.get)
 #
 # // curl -X POST "https://api.cloudflare.com/client/v4/zones/<YOUR_ZONE_ID>/dns_records" \
