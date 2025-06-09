@@ -12,7 +12,9 @@ if not name
 
 ed25519 = 'ed25519'
 
-mkdirSync ed25519+'/'+name, recursive: true
+outdir=ed25519+'/'+name
+mkdirSync outdir, recursive: true
+outdir += '/'
 
 keys = generateKeyPairSync ed25519
 
@@ -25,9 +27,9 @@ pk = keys.publicKey.export(
   format: 'der'
 )
 
-writeFileSync(name+'/sk', sk)
+writeFileSync(outdir+'sk', sk)
 
 writeFileSync(
-  name+'/pk'
+  outdir+'pk'
   pk
 )
