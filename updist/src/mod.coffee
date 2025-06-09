@@ -2,6 +2,7 @@
 
 > @3-/cf
   @3-/cf/setTXT.js
+  fs > readFileSync
   yargs
   yargs/helpers > hideBin
 
@@ -30,7 +31,8 @@ setTxt = (project, channel, txt)=>
   return
 
 
-dist = (project, channel, key, file)=>
+dist = (project, channel, sk_fp, file)=>
+  key = readFileSync sk_fp
   console.log project, channel, key, file
   return
 
