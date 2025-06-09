@@ -58,7 +58,7 @@ distTar = (project, version, channel, sk_fp, dir, filepath)=>
           key
         )
         writeFileSync(
-          join dir, 's'
+          join dir, 'sign'
           sign
         )
         # console.log ed25519ph.verify(
@@ -80,6 +80,8 @@ distTar = (project, version, channel, sk_fp, dir, filepath)=>
         ).pipe s
         s.on 'finish', =>
           console.log out_tar
+
+          rmdirSync dir, recursive:true, force:true
           resolve()
           return
         return
@@ -94,7 +96,7 @@ dist = (project, version, channel, sk_fp, dirpath)=>
 
   mkdirSync dir,recursive:true
 
-  tar = join dir, 'i'
+  tar = join dir, 'tar.zst'
 
   s = createWriteStream(tar)
 
