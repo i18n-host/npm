@@ -8,7 +8,7 @@
   os > tmpdir
   tar > c:createTar
   crypto > createHash
-  fs > readFileSync createReadStream createWriteStream existsSync unlinkSync mkdirSync rmdirSync writeFileSync
+  fs > readFileSync createReadStream createWriteStream existsSync unlinkSync mkdirSync rmSync writeFileSync
   yargs
   yargs/helpers > hideBin
   @noble/curves/ed25519 > ed25519ph
@@ -37,7 +37,7 @@ setTxt = (project, channel, txt)=>
     )
   return
 
-distTar = (project, version, channel, sk_fp, dir, filepath)=>
+distTar = (project, version, channel, sk_fp, platform, dir, filepath)=>
   key = readFileSync sk_fp
   stream = createReadStream filepath
   hash = createHash('sha3-512')
@@ -66,7 +66,7 @@ distTar = (project, version, channel, sk_fp, dir, filepath)=>
         #   hash
         #   readFileSync(sk_fp.slice(0,-2)+'pk')
         # )
-        out_tar = dir+'.tar'
+        out_tar = join(dir, platform+'.tar')
         if existsSync out_tar
           unlinkSync out_tar
         s = createWriteStream(out_tar)
@@ -80,8 +80,7 @@ distTar = (project, version, channel, sk_fp, dir, filepath)=>
         ).pipe s
         s.on 'finish', =>
           console.log out_tar
-
-          rmdirSync dir, recursive:true, force:true
+          rmSync dir, recursive:true, force:true
           resolve()
           return
         return
@@ -89,10 +88,11 @@ distTar = (project, version, channel, sk_fp, dir, filepath)=>
   )
 
 dist = (project, version, channel, sk_fp, dirpath)=>
-  dir = join tmpdir(), basename(dirpath), version
+  platform = basename(dirpath)
+  dir = join tmpdir(), project, version, platform
 
   if existsSync dir
-    rmdirSync dir, recursive:true, force:true
+    rmSync dir, recursive:true, force:true
 
   mkdirSync dir,recursive:true
 
@@ -116,7 +116,7 @@ dist = (project, version, channel, sk_fp, dirpath)=>
     s.on 'error', reject
     return
 
-  await distTar project, version, channel, sk_fp, dir, tar
+  await distTar project, version, channel, sk_fp, platform, dir, tar
   return
 
 
