@@ -6,13 +6,12 @@
 
 
 setTxt = =>
-  {HOST_LI,TXT} = process.env
-  HOST_LI = HOST_LI.split(' ')
-
   [
     project
     channel
   ] = process.argv.slice(2)
+  {HOST_LI,TXT} = process.env
+  HOST_LI = HOST_LI.split(' ')
 
   zone_id_li = (await Promise.all(
     HOST_LI.map (i)=>GET('?name='+i)
