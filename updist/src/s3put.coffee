@@ -1,8 +1,12 @@
+> @3-/ossput
+  fs > createReadStream
+  path > basename
+
 HTTPS = 'https://'
 
 {S3_LI} = process.env
 
-S3_LI = S3_LI.split(' ').map (i)=>
+put = ossput S3_LI.split(' ').map (i)=>
   [
     endpoint
     accessKeyId
@@ -18,23 +22,18 @@ S3_LI = S3_LI.split(' ').map (i)=>
         accessKeyId
         secretAccessKey
       }
-      endpoint: HTTPS+url
+      endpoint: HTTPS+endpoint
     }
+    HTTPS+download_prefix
   ]
 
-console.log S3_LI
+
 export default (project, version, out_tar) =>
-  console.log project, version, out_tar
-  # [
-  #   [
-  #     bucket
-  #     {
-  #       credentials:{
-  #         accessKeyId
-  #         secretAccessKey
-  #       }
-  #     }
-  #     endpoint: HTTPS+url
-  #   ]
-  # ]
-  return
+  put(
+    [
+      project
+      version
+      basename out_tar
+    ].join('/')
+    createReadStream(out_tar)
+  )
