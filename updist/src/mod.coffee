@@ -40,8 +40,8 @@ distTar = (project, version, channel, sk_fp, filepath)=>
   key = readFileSync sk_fp
   stream = createReadStream filepath
   hash = createHash('sha3-512')
-  ver_li = version.split('.').map (i)=>Number.parseInt(i)
-  console.log ver_li
+  ver_bin = vbE version.split('.').map (i)=>Number.parseInt(i)
+  hash.update ver_bin
 
   new Promise(
     (resolve, reject)=>
@@ -55,6 +55,7 @@ distTar = (project, version, channel, sk_fp, filepath)=>
           hash
           key
         )
+        console.log sign
         # console.log ed25519ph.verify(
         #   sign
         #   hash
@@ -85,7 +86,8 @@ dist = (project, version, channel, sk_fp, dirpath)=>
     s.on 'error', reject
     return
 
-  console.log dirpath
+  await distTar project, version, channel, sk_fp, tar
+  unlinkSync(tar)
   return
 
 
