@@ -2,8 +2,12 @@
 
 > @3-/cf
   @3-/cf/setTXT.js
+  @3-/vb/vbE.js
+  path > basename
+  os > tmpdir
+  tar > c:createTar
   crypto > createHash
-  fs > readFileSync createReadStream
+  fs > readFileSync createReadStream createWriteStream existsSync unlinkSync
   yargs
   yargs/helpers > hideBin
   @noble/curves/ed25519 > ed25519ph
@@ -32,10 +36,12 @@ setTxt = (project, channel, txt)=>
     )
   return
 
-dist = (project, version, channel, sk_fp, filepath)=>
+distTar = (project, version, channel, sk_fp, filepath)=>
   key = readFileSync sk_fp
   stream = createReadStream filepath
   hash = createHash('sha3-512')
+  ver_li = version.split('.').map (i)=>Number.parseInt(i)
+  console.log ver_li
 
   new Promise(
     (resolve, reject)=>
@@ -58,6 +64,34 @@ dist = (project, version, channel, sk_fp, filepath)=>
         return
       return
   )
+
+dist = (project, version, channel, sk_fp, dirpath)=>
+  tar = tmpdir()+'/'+basename(dirpath)+'.'+version+'.tar'
+  if existsSync tar
+    unlinkSync tar
+  console.log tar
+  s = createWriteStream(tar)
+
+  # 3. 创建 tar 打包流
+  #  - `C` (或 `cwd`) 选项会将当前工作目录更改为指定的目录，这样归档中的文件路径就是相对于该目录的。
+  #  - `portable: true` 和 `preservePaths: true` 有助于保持权限和所有权的一致性。
+  createTar(
+    {
+      cwd: dirpath
+      portable: true,
+      preservePaths: true
+    }
+    ['.']
+  ).pipe s
+
+  await new Promise (resolve, reject)=>
+    s.on 'finish', resolve
+    s.on 'error', reject
+    return
+
+  console.log dirpath
+  return
+
 
 argv = hideBin(process.argv)
 
