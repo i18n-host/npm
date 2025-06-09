@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 
-> @noble/ed25519 > utils
+> @noble/ed25519 > utils getPublicKey
   fs > writeFileSync
 
 {argv} = process
@@ -15,13 +15,8 @@ sk = utils.randomPrivateKey()
 
 writeFileSync(name+'.sk', sk)
 
-# privateKeyPath = name+'.pk'
-# publicKeyPath = name+'.sk'
-
-# privateKeyHex = Buffer.from(privateKeyBytes).toString('hex')
-#
-# # 从私钥派生出公钥
-# nobleEd25519.getPublicKey(privateKeyBytes).then (publicKeyBytes) ->
+pk = await getPublicKey Buffer.from(sk)
+console.log pk
 #   # 将公钥也转换为十六进制字符串
 #   publicKeyHex = Buffer.from(publicKeyBytes).toString('hex')
 #

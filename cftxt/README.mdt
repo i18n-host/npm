@@ -1,2 +1,4 @@
 [Github Repo](https://github.com/i18n-host/npm/tree/dev/cftxt)
 
+运行 `./gen.coffee` 生成签名的私钥和公钥
+
