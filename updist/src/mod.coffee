@@ -3,6 +3,7 @@
 > @3-/cf
   @3-/cf/setTXT.js
   @3-/vb/vbE.js
+  simple-zstd > ZSTDCompress
   path > basename
   os > tmpdir
   tar > c:createTar
@@ -71,6 +72,7 @@ dist = (project, version, channel, sk_fp, dirpath)=>
   tar = tmpdir()+'/'+basename(dirpath)+'.'+version+'.tzst'
   if existsSync tar
     unlinkSync tar
+
   s = createWriteStream(tar)
 
   createTar(
@@ -80,7 +82,9 @@ dist = (project, version, channel, sk_fp, dirpath)=>
       preservePaths: true
     }
     ['.']
-  ).pipe s
+  )
+    .pipe(ZSTDCompress(19))
+    .pipe s
 
   await new Promise (resolve, reject)=>
     s.on 'finish', resolve
@@ -89,7 +93,7 @@ dist = (project, version, channel, sk_fp, dirpath)=>
 
   await distTar project, version, channel, sk_fp, tar
   console.log tar
-  # unlinkSync(tar)
+      # unlinkSync(tar)
   return
 
 
