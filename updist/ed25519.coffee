@@ -1,7 +1,8 @@
 #!/usr/bin/env coffee
 
+import { ed25519ph } from '@noble/curves/ed25519'
+
 > fs > writeFileSync mkdirSync
-  crypto > generateKeyPairSync
 
 {argv} = process
 name = argv.slice(2)[0]
@@ -16,20 +17,10 @@ outdir=ed25519+'/'+name
 mkdirSync outdir, recursive: true
 outdir += '/'
 
-keys = generateKeyPairSync ed25519
-
-sk = keys.privateKey.export(
-  type: 'pkcs8'
-  format: 'der'
-)
-pk = keys.publicKey.export(
-  type: 'spki'
-  format: 'der'
-)
-
+sk = ed25519ph.utils.randomPrivateKey()
 writeFileSync(outdir+'sk', sk)
 
 writeFileSync(
   outdir+'pk'
-  pk
+  ed25519ph.getPublicKey(sk)
 )
