@@ -52,31 +52,6 @@ export default (owner, repo, project, ver, file)=>
     throw err
   return
 
-  # console.log owner, repo_name
-  # li = (await repo.listReleases()).data
-  #
-  # + id
-  # for i in li
-  #   if i.tag_name == tag
-  #     {id} = i
-  #     break
-  # if not id
-  #   {
-  #     id
-  #   } = await repo.createRelease({
-  #     tag_name: tag
-  #     name: tag
-  #     body: '-'
-  #   })
-  #
-  # console.log await repo.uploadAsset(
-  #   id
-  #   {
-  #     name: basename file
-  #     file: createReadStream(file)
-  #   }
-  # )
-  return
 
 
 
