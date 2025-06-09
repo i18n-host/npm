@@ -32,7 +32,7 @@ setTxt = (project, channel, txt)=>
     )
   return
 
-dist = (project, channel, sk_fp, filepath)=>
+dist = (project, version, channel, sk_fp, filepath)=>
   key = readFileSync sk_fp
   stream = createReadStream filepath
   hash = createHash('sha3-512')
@@ -62,12 +62,16 @@ dist = (project, channel, sk_fp, filepath)=>
 argv = hideBin(process.argv)
 
 yargs(argv).command(
-  '$0 <project> <channel> <key> <file>',
+  '$0 <project> <ver> <channel> <key> <file>',
   '上传文件到指定项目和频道',
   (yargs) =>
     yargs
       .positional('project', {
         describe: '项目名称',
+        type: 'string'
+      })
+      .positional('ver', {
+        describe: '项目版本',
         type: 'string'
       })
       .positional('channel', {
