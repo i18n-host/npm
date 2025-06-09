@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 
-> fs > createReadStream
+> fs > createReadStream statSync
   path > basename
   @octokit/rest > Octokit
 
@@ -8,11 +8,40 @@
   GITHUB_TOKEN
 } = process.env
 
-export default (owner, repo_name, project, ver, file)=>
+export default (owner, repo, project, ver, file)=>
   tag = project + '-' + ver
   gh = new Octokit({ auth: GITHUB_TOKEN })
-  release = await gh.repos.getReleaseByTag(owner, repo_name, tag)
-  console.log release
+  try
+    {id: release_id} = (await gh.repos.getReleaseByTag({
+      owner, repo, tag
+    })).data
+  catch err
+    if err.status != 404
+      throw err
+
+  if not release_id
+    {id: release_id} = (
+      await gh.repos.createRelease({
+        owner
+        repo
+        tag_name: tag
+        name: tag
+        body: '-'
+      })
+    ).data
+  console.log await gh.repos.uploadReleaseAsset({
+    owner
+    repo
+    release_id
+    name: basename file
+    headers: {
+      'content-type': 'application/octet-stream'
+      'content-length': statSync(file).size
+    }
+    data: createReadStream(file)
+  })
+
+
   # console.log owner, repo_name
   # li = (await repo.listReleases()).data
   #
