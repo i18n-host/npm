@@ -1,5 +1,7 @@
 #!/usr/bin/env coffee
 
+import { ed25519ph } from '@noble/curves/ed25519'
+
 > @3-/cf
   @3-/cf/setTXT.js
   crypto > createHash
@@ -34,7 +36,7 @@ setTxt = (project, channel, txt)=>
 dist = (project, channel, sk_fp, filepath)=>
   key = readFileSync sk_fp
   stream = createReadStream filepath
-  hash = createHash('sha3-256')
+  hash = createHash('sha3-512')
 
   new Promise(
     (resolve, reject)=>
@@ -43,7 +45,17 @@ dist = (project, channel, sk_fp, filepath)=>
         hash.update(chunk)
         return
       stream.on 'end', =>
-        console.log hash.digest()
+        hash = hash.digest()
+        sign = ed25519ph.sign(
+          hash
+          key
+        )
+        # console.log sign, sk_fp.slice(0,-2)+'pk'
+        # console.log ed25519ph.verify(
+        #   sign
+        #   hash
+        #   readFileSync(sk_fp.slice(0,-2)+'pk')
+        # )
         resolve()
         return
       return
