@@ -2,7 +2,8 @@
 
 > @3-/cf
   @3-/cf/setTXT.js
-  fs > readFileSync
+  fs > readFileSync createReadStream
+  crypto > createSign
   yargs
   yargs/helpers > hideBin
 
@@ -31,10 +32,17 @@ setTxt = (project, channel, txt)=>
     )
   return
 
-dist = (project, channel, sk_fp, file)=>
+dist = (project, channel, sk_fp, filepath)=>
   key = readFileSync sk_fp
-  console.log project, channel, key, file
-  return
+  signature = crypto.createSign 'ed25519'
+  stream = createReadStream filepath
+  stream.pipe signature
+  new Promise (resolve, reject)=>
+    stream.on 'error', reject
+    stream.on 'end', =>
+      resolve()
+      return
+    return
 
 argv = hideBin(process.argv)
 
@@ -61,13 +69,15 @@ yargs(argv).command(
       })
     return
   =>
-    dist ...argv
+    await dist ...argv
+    process.exit(0)
     return
 )
 .help()
 .alias('h', 'help')
 .strict()
 .argv
+
 
 
 # https://github.com/up51/v
