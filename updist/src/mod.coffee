@@ -40,9 +40,11 @@ distTar = (project, version, channel, sk_fp, filepath)=>
   key = readFileSync sk_fp
   stream = createReadStream filepath
   hash = createHash('sha3-512')
-  ver_bin = vbE version.split('.').map (i)=>Number.parseInt(i)
+  ver_bin = Buffer.from vbE version.split('.').map (i)=>Number.parseInt(i)
   hash.update ver_bin
 
+  ver_b64 = ver_bin.toString('base64url')
+  console.log ver_b64
   new Promise(
     (resolve, reject)=>
       stream.on 'error', reject
