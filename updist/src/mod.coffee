@@ -66,7 +66,7 @@ distTar = (project, version, channel, sk_fp, platform, dir, filepath)=>
         #   hash
         #   readFileSync(sk_fp.slice(0,-2)+'pk')
         # )
-        out_tar = join(dir, platform+'.tar')
+        out_tar = dir+'.tar'
         if existsSync out_tar
           unlinkSync out_tar
         s = createWriteStream(out_tar)
