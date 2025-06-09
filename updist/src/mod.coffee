@@ -8,7 +8,7 @@
   os > tmpdir
   tar > c:createTar
   crypto > createHash
-  fs > readFileSync createReadStream createWriteStream existsSync unlinkSync mkdirSync rmdirSync
+  fs > readFileSync createReadStream createWriteStream existsSync unlinkSync mkdirSync rmdirSync writeFileSync
   yargs
   yargs/helpers > hideBin
   @noble/curves/ed25519 > ed25519ph
@@ -37,7 +37,7 @@ setTxt = (project, channel, txt)=>
     )
   return
 
-distTar = (project, version, channel, sk_fp, filepath)=>
+distTar = (project, version, channel, sk_fp, dir, filepath)=>
   key = readFileSync sk_fp
   stream = createReadStream filepath
   hash = createHash('sha3-512')
@@ -57,7 +57,10 @@ distTar = (project, version, channel, sk_fp, filepath)=>
           hash
           key
         )
-        console.log sign
+        writeFileSync(
+          join dir, 's'
+          sign
+        )
         # console.log ed25519ph.verify(
         #   sign
         #   hash
@@ -76,7 +79,7 @@ dist = (project, version, channel, sk_fp, dirpath)=>
 
   mkdirSync dir,recursive:true
 
-  tar = 'i'
+  tar = join dir, 'i'
 
   s = createWriteStream(tar)
 
@@ -96,8 +99,7 @@ dist = (project, version, channel, sk_fp, dirpath)=>
     s.on 'error', reject
     return
 
-  await distTar project, version, channel, sk_fp, tar
-      # unlinkSync(tar)
+  await distTar project, version, channel, sk_fp, dir, tar
   return
 
 
