@@ -4,6 +4,13 @@
   tar > c:createTar
   path > join
 
+
+{
+  GITHUB_OWNER
+  GITHUB_REPO
+  GITHUB_TOKEN
+} = process.env
+
 export default (project, version, channel, sk_fp, platform, dir, filepath)=>
   stream = createReadStream filepath
   ver_bin = Buffer.from vbE version.split('.').map (i)=>Number.parseInt(i)

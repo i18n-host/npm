@@ -4,13 +4,9 @@
   path > basename
   @octokit/rest > Octokit
 
-{
-  GITHUB_TOKEN
-} = process.env
-
-export default (owner, repo, project, ver, file)=>
+export default (token, owner, repo, project, ver, file)=>
   tag = project + '-' + ver
-  gh = new Octokit({ auth: GITHUB_TOKEN })
+  gh = new Octokit({ auth: token })
   try
     {id: release_id} = (await gh.repos.getReleaseByTag({
       owner, repo, tag

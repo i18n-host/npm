@@ -3,6 +3,7 @@
 import gh_release from './src/mod.coffee'
 
 await gh_release(
+  process.env.GITHUB_TOKEN
   'up51'
   'v'
   'i18'
