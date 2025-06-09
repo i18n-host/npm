@@ -1,0 +1,26 @@
+{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "@~8/gh_release",
+      "dependencies": {
+        "github-api": "^3.4.0",
+      },
+    },
+  },
+  "packages": {
+    "axios": ["axios@0.21.4", "", { "dependencies": { "follow-redirects": "^1.14.0" } }, "sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg=="],
+
+    "debug": ["debug@2.6.9", "", { "dependencies": { "ms": "2.0.0" } }, "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA=="],
+
+    "follow-redirects": ["follow-redirects@1.15.9", "", {}, "sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ=="],
+
+    "github-api": ["github-api@3.4.0", "", { "dependencies": { "axios": "^0.21.1", "debug": "^2.2.0", "js-base64": "^2.1.9", "utf8": "^2.1.1" } }, "sha512-2yYqYS6Uy4br1nw0D3VrlYWxtGTkUhIZrumBrcBwKdBOzMT8roAe8IvI6kjIOkxqxapKR5GkEsHtz3Du/voOpA=="],
+
+    "js-base64": ["js-base64@2.6.4", "", {}, "sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ=="],
+
+    "ms": ["ms@2.0.0", "", {}, "sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A=="],
+
+    "utf8": ["utf8@2.1.2", "", {}, "sha512-QXo+O/QkLP/x1nyi54uQiG0XrODxdysuQvE5dtVqv7F5K2Qb6FsN+qbr6KhF5wQ20tfcV3VQp0/2x1e1MRSPWg=="],
+  }
+}
