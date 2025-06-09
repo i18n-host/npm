@@ -49,7 +49,6 @@ dist = (project, channel, sk_fp, filepath)=>
           hash
           key
         )
-        # console.log sign, sk_fp.slice(0,-2)+'pk'
         # console.log ed25519ph.verify(
         #   sign
         #   hash
