@@ -66,7 +66,22 @@ distTar = (project, version, channel, sk_fp, dir, filepath)=>
         #   hash
         #   readFileSync(sk_fp.slice(0,-2)+'pk')
         # )
-        resolve()
+        out_tar = dir+'.tar'
+        if existsSync out_tar
+          unlinkSync out_tar
+        s = createWriteStream(out_tar)
+        createTar(
+          {
+            cwd: dir
+            portable: true,
+            preservePaths: true
+          }
+          ['.']
+        ).pipe s
+        s.on 'finish', =>
+          console.log out_tar
+          resolve()
+          return
         return
       return
   )
