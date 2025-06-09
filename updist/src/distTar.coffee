@@ -1,4 +1,8 @@
-#!/usr/bin/env coffee
+> @3-/vb/vbE.js
+  @3-/ed25519_ph:Ed25519
+  fs > readFileSync createReadStream createWriteStream existsSync unlinkSync rmSync writeFileSync
+  tar > c:createTar
+  path > join
 
 export default (project, version, channel, sk_fp, platform, dir, filepath)=>
   stream = createReadStream filepath
