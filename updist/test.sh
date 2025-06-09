@@ -11,4 +11,4 @@ set +o allexport
 set -x
 
 bun x cep -c src -o lib
-./lib/mod.js i18 0.2.1 nightly ../../conf/i18/ed25519/sk $DIR/node_modules
+./lib/mod.js i18 0.2.1 nightly ../../conf/i18/ed25519/sk $DIR/src

@@ -11,7 +11,7 @@
   GITHUB_REPO
 } = process.env
 
-export default (project, version, channel, sk_fp, platform, dir, filepath)=>
+export default (project, version, channel, sk_fp, dir, filepath)=>
   stream = createReadStream filepath
   ver_bin = Buffer.from vbE version.split('.').map (i)=>Number.parseInt(i)
   ed25519 = Ed25519 readFileSync sk_fp
@@ -43,14 +43,21 @@ export default (project, version, channel, sk_fp, platform, dir, filepath)=>
           ['.']
         ).pipe s
         s.on 'finish', =>
-          ghRelease(
-            GITHUB_TOKEN
-            GITHUB_OWNER
-            GITHUB_REPO
-            project
-            version
-            out_tar
-          ).finally =>
+          Promise.all([
+            ossput(
+              project
+              version
+              out_tar
+            )
+            ghRelease(
+              GITHUB_TOKEN
+              GITHUB_OWNER
+              GITHUB_REPO
+              project
+              version
+              out_tar
+            )
+          ]).finally =>
             rmSync dir, recursive:true, force:true
             resolve()
             return

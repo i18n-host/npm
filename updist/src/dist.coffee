@@ -8,8 +8,7 @@
   ./distTar.js
 
 export default (project, version, channel, sk_fp, dirpath)=>
-  platform = basename(dirpath)
-  dir = join tmpdir(), project, version, platform
+  dir = join tmpdir(), project, version
 
   if existsSync dir
     rmSync dir, recursive:true, force:true
@@ -36,5 +35,5 @@ export default (project, version, channel, sk_fp, dirpath)=>
     s.on 'error', reject
     return
 
-  await distTar project, version, channel, sk_fp, platform, dir, tar
+  await distTar project, version, channel, sk_fp, dir, tar
   return
