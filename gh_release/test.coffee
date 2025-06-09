@@ -7,6 +7,6 @@ await gh_release(
   'v'
   'i18'
   '0.1.2'
-  '/tmp/0.2.1.tar'
+  import.meta.dirname + '/test.coffee'
 )
 console.log 'done'
