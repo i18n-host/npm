@@ -29,7 +29,7 @@ setTxt = (project, channel)=>
   return
 
 
-argv = yargs(process.argv.slice(2))
+yargs(process.argv.slice(2))
   .command(
     '$0 <project> <channel> <key> <file>',
     '上传文件到指定项目和频道',
@@ -63,7 +63,6 @@ argv = yargs(process.argv.slice(2))
   .help()
   .alias('h', 'help')
   .strict()
-  .demandCommand(1, '你必须提供命令中定义的参数！')
   .argv
 
 
