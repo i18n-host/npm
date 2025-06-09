@@ -1,8 +1,7 @@
 #!/usr/bin/env coffee
 
-> @3-/cf
-  @3-/cf/setTXT.js
-  @3-/vb/vbE.js
+> @3-/vb/vbE.js
+  ./setTxt.js
   simple-zstd > ZSTDCompress
   path > basename join
   os > tmpdir
@@ -11,30 +10,6 @@
   yargs
   yargs/helpers > hideBin
   @3-/ed25519_ph:Ed25519
-
-{GET, POST, DELETE} = cf
-
-setTxt = (project, channel, txt)=>
-  # [
-  #   project
-  #   channel
-  # ] = process.argv.slice(2)
-  {HOST_LI} = process.env
-  HOST_LI = HOST_LI.split(' ')
-
-  zone_id_li = (await Promise.all(
-    HOST_LI.map (i)=>GET('?name='+i)
-  )).map ([i])=>i.id
-
-  content = JSON.stringify(txt)
-  await Promise.allSettled HOST_LI.map (host, pos)=>
-    setTXT(
-      project+'-'+channel
-      host
-      zone_id_li[pos]
-      content
-    )
-  return
 
 distTar = (project, version, channel, sk_fp, platform, dir, filepath)=>
   stream = createReadStream filepath
