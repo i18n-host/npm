@@ -44,6 +44,7 @@ export default (project, version, channel, sk_fp, dir, filepath)=>
           ['.']
         ).pipe s
         s.on 'finish', =>
+          console.log out_tar
           Promise.all([
             s3put(
               project
