@@ -3,7 +3,6 @@
 > @3-/cf
   @3-/cf/setTXT.js
   fs > readFileSync
-  @noble/ed25519 > createReadStream
   yargs
   yargs/helpers > hideBin
 

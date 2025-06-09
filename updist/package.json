@@ -18,7 +18,6 @@
   "type": "module",
   "dependencies": {
     "@3-/cf": "^0.1.17",
-    "@noble/ed25519": "^2.2.3",
     "yargs": "^18.0.0"
   },
   "bin": {

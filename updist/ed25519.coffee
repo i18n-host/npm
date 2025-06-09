@@ -1,7 +1,7 @@
 #!/usr/bin/env coffee
 
-> @noble/ed25519 > utils getPublicKeyAsync
-  fs > writeFileSync mkdirSync
+> fs > writeFileSync mkdirSync
+  crypto > generateKeyPairSync
 
 {argv} = process
 name = argv.slice(2)[0]
@@ -12,11 +12,21 @@ if not name
 
 mkdirSync name, recursive: true
 
-sk = utils.randomPrivateKey()
 
+keys = generateKeyPairSync 'ed25519'
+
+# 提取 DER 格式的二进制公钥和私钥
+# PKCS8 格式用于私钥, SPKI 格式用于公钥
+sk = keys.privateKey.export(
+  type: 'pkcs8'
+  format: 'der'
+)
+pk = keys.publicKey.export(
+  type: 'spki'
+  format: 'der'
+)
 writeFileSync(name+'/sk', sk)
-
 writeFileSync(
   name+'/pk'
-  await getPublicKeyAsync sk
+  pk
 )
