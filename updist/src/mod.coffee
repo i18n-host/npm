@@ -3,7 +3,7 @@
 > @3-/cf
   @3-/cf/setTXT.js
   fs > readFileSync createReadStream
-  crypto > createSign
+  crypto > createSign createPrivateKey
   yargs
   yargs/helpers > hideBin
 
@@ -34,12 +34,19 @@ setTxt = (project, channel, txt)=>
 
 dist = (project, channel, sk_fp, filepath)=>
   key = readFileSync sk_fp
-  signature = crypto.createSign 'ed25519'
+  signature = createSign 'ed25519'
   stream = createReadStream filepath
   stream.pipe signature
   new Promise (resolve, reject)=>
     stream.on 'error', reject
     stream.on 'end', =>
+      sk = createPrivateKey {
+        key
+        format: 'der'
+        type: 'pkcs8'
+      }
+      signed = signature.sign(sk).toString 'hex'
+      console.log signed
       resolve()
       return
     return
