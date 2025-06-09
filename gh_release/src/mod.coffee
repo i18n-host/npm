@@ -26,21 +26,31 @@ export default (owner, repo, project, ver, file)=>
         repo
         tag_name: tag
         name: tag
-        body: '-'
+        body: '…'
       })
     ).data
-  console.log await gh.repos.uploadReleaseAsset({
-    owner
-    repo
-    release_id
-    name: basename file
-    headers: {
-      'content-type': 'application/octet-stream'
-      'content-length': statSync(file).size
-    }
-    data: createReadStream(file)
-  })
-
+  filename = basename file
+  try
+    await gh.repos.uploadReleaseAsset({
+      owner
+      repo
+      release_id
+      name: filename
+      headers: {
+        'content-type': 'application/octet-stream'
+        'content-length': statSync(file).size
+      }
+      data: createReadStream(file)
+    })
+  catch err
+    errors = err?.response?.data?.errors
+    if errors?.length == 1
+      {code} = errors[0]
+      if code == 'already_exists'
+        console.log filename, code
+        return
+    throw err
+  return
 
   # console.log owner, repo_name
   # li = (await repo.listReleases()).data
