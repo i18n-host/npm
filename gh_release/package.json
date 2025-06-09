@@ -17,6 +17,6 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
-    "github-api": "^3.4.0"
+    "@octokit/rest": "^22.0.0"
   }
 }
