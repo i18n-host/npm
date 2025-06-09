@@ -69,12 +69,8 @@ dist = (project, version, channel, sk_fp, dirpath)=>
   tar = tmpdir()+'/'+basename(dirpath)+'.'+version+'.tar'
   if existsSync tar
     unlinkSync tar
-  console.log tar
   s = createWriteStream(tar)
 
-  # 3. 创建 tar 打包流
-  #  - `C` (或 `cwd`) 选项会将当前工作目录更改为指定的目录，这样归档中的文件路径就是相对于该目录的。
-  #  - `portable: true` 和 `preservePaths: true` 有助于保持权限和所有权的一致性。
   createTar(
     {
       cwd: dirpath
