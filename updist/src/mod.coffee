@@ -1,13 +1,12 @@
 #!/usr/bin/env coffee
 
-import { ed25519ph } from '@noble/curves/ed25519'
-
 > @3-/cf
   @3-/cf/setTXT.js
   crypto > createHash
   fs > readFileSync createReadStream
   yargs
   yargs/helpers > hideBin
+  @noble/curves/ed25519 > ed25519ph
 
 {GET, POST, DELETE} = cf
 
