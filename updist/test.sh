@@ -10,4 +10,4 @@ set +o allexport
 set -x
 
 bun x cep -c src -o lib
-TXT="1 x 2l3232" ./lib/mod.js i18 nightly
+./lib/mod.js i18 nightly ../../conf/i18/ed25519/sk $DIR/test.sh

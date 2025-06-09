@@ -7,19 +7,19 @@
 
 {GET, POST, DELETE} = cf
 
-setTxt = (project, channel)=>
+setTxt = (project, channel, txt)=>
   # [
   #   project
   #   channel
   # ] = process.argv.slice(2)
-  {HOST_LI,TXT} = process.env
+  {HOST_LI} = process.env
   HOST_LI = HOST_LI.split(' ')
 
   zone_id_li = (await Promise.all(
     HOST_LI.map (i)=>GET('?name='+i)
   )).map ([i])=>i.id
 
-  content = JSON.stringify(TXT)
+  content = JSON.stringify(txt)
   await Promise.allSettled HOST_LI.map (host, pos)=>
     setTXT(
       project+'-'+channel
@@ -30,7 +30,13 @@ setTxt = (project, channel)=>
   return
 
 
-yargs(hideBin(process.argv)).command(
+dist = (project, channel, key, file)=>
+  console.log project, channel, key, file
+  return
+
+argv = hideBin(process.argv)
+
+yargs(argv).command(
   '$0 <project> <channel> <key> <file>',
   '上传文件到指定项目和频道',
   (yargs) =>
@@ -51,14 +57,10 @@ yargs(hideBin(process.argv)).command(
         describe: '要上传的文件路径',
         type: 'string'
       })
-  ,
-  (argv) =>
-    console.log "🚀 开始执行上传任务..."
-    console.log "   - 项目: #{argv.project}"
-    console.log "   - 频道: #{argv.channel}"
-    console.log "   - 私钥: #{argv.key}"
-    console.log "   - 文件: #{argv.file}"
-    console.log "\n✅ 任务处理完毕！"
+    return
+  =>
+    dist ...argv
+    return
 )
 .help()
 .alias('h', 'help')
