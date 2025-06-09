@@ -3,12 +3,12 @@
   fs > readFileSync createReadStream createWriteStream existsSync unlinkSync rmSync writeFileSync
   tar > c:createTar
   path > join
-
+  @3-/gh_release:ghRelease
 
 {
+  GITHUB_TOKEN
   GITHUB_OWNER
   GITHUB_REPO
-  GITHUB_TOKEN
 } = process.env
 
 export default (project, version, channel, sk_fp, platform, dir, filepath)=>
@@ -43,9 +43,17 @@ export default (project, version, channel, sk_fp, platform, dir, filepath)=>
           ['.']
         ).pipe s
         s.on 'finish', =>
-          console.log out_tar
-          rmSync dir, recursive:true, force:true
-          resolve()
+          ghRelease(
+            GITHUB_TOKEN
+            GITHUB_OWNER
+            GITHUB_REPO
+            project
+            version
+            out_tar
+          ).finally =>
+            rmSync dir, recursive:true, force:true
+            resolve()
+            return
           return
         return
       return
