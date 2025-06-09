@@ -7,11 +7,10 @@
   path > basename join
   os > tmpdir
   tar > c:createTar
-  crypto > createHash
   fs > readFileSync createReadStream createWriteStream existsSync unlinkSync mkdirSync rmSync writeFileSync
   yargs
   yargs/helpers > hideBin
-  @noble/curves/ed25519 > ed25519ph
+  @3-/ed25519_ph:Ed25519
 
 {GET, POST, DELETE} = cf
 
@@ -38,35 +37,24 @@ setTxt = (project, channel, txt)=>
   return
 
 distTar = (project, version, channel, sk_fp, platform, dir, filepath)=>
-  key = readFileSync sk_fp
   stream = createReadStream filepath
-  hash = createHash('sha3-512')
   ver_bin = Buffer.from vbE version.split('.').map (i)=>Number.parseInt(i)
-  # hash.update ver_bin
+  ed25519 = Ed25519 readFileSync sk_fp
+  ed25519.update ver_bin
 
   ver_b64 = ver_bin.toString('base64url')
   new Promise(
     (resolve, reject)=>
       stream.on 'error', reject
       stream.on 'data', (chunk) =>
-        hash.update(chunk)
+        ed25519.update(chunk)
         return
       stream.on 'end', =>
-        hash = hash.digest()
-        console.log hash
-        sign = ed25519ph.sign(
-          hash
-          key
-        )
+        sign = ed25519.finish()
         writeFileSync(
           join dir, 'sign'
           sign
         )
-        # console.log ed25519ph.verify(
-        #   sign
-        #   hash
-        #   readFileSync(sk_fp.slice(0,-2)+'pk')
-        # )
         out_tar = dir+'.tar'
         if existsSync out_tar
           unlinkSync out_tar
