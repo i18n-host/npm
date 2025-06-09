@@ -8,7 +8,7 @@
   ./distTar.js
 
 export default (project, version, channel, sk_fp, dirpath)=>
-  dir = join tmpdir(), project, version
+  dir = join tmpdir(), project, version, basename(dirpath)
 
   if existsSync dir
     rmSync dir, recursive:true, force:true

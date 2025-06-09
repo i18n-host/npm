@@ -4,6 +4,7 @@
   tar > c:createTar
   path > join
   @3-/gh_release:ghRelease
+  ./s3put.js
 
 {
   GITHUB_TOKEN
@@ -44,7 +45,7 @@ export default (project, version, channel, sk_fp, dir, filepath)=>
         ).pipe s
         s.on 'finish', =>
           Promise.all([
-            ossput(
+            s3put(
               project
               version
               out_tar
