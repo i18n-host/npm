@@ -4,11 +4,11 @@
   @3-/cf/setTXT.js
   @3-/vb/vbE.js
   simple-zstd > ZSTDCompress
-  path > basename
+  path > basename join
   os > tmpdir
   tar > c:createTar
   crypto > createHash
-  fs > readFileSync createReadStream createWriteStream existsSync unlinkSync
+  fs > readFileSync createReadStream createWriteStream existsSync unlinkSync mkdirSync
   yargs
   yargs/helpers > hideBin
   @noble/curves/ed25519 > ed25519ph
@@ -69,9 +69,10 @@ distTar = (project, version, channel, sk_fp, filepath)=>
   )
 
 dist = (project, version, channel, sk_fp, dirpath)=>
-  tar = tmpdir()+'/'+basename(dirpath)+'.'+version+'.tzst'
-  if existsSync tar
-    unlinkSync tar
+  dir = join tmpdir(), basename(dirpath), version
+
+  mkdirSync dir,recursive:true
+  tar = 'i'
 
   s = createWriteStream(tar)
 
@@ -92,7 +93,6 @@ dist = (project, version, channel, sk_fp, dirpath)=>
     return
 
   await distTar project, version, channel, sk_fp, tar
-  console.log tar
       # unlinkSync(tar)
   return
 
