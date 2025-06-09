@@ -2,8 +2,8 @@
 
 > @3-/cf
   @3-/cf/setTXT.js
-{GET, POST, DELETE} = cf
 
+{GET, POST, DELETE} = cf
 
 setTxt = =>
   [
