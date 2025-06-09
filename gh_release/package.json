@@ -15,5 +15,8 @@
     "*"
   ],
   "scripts": {},
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "github-api": "^3.4.0"
+  }
 }
