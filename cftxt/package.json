@@ -17,7 +17,8 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
-    "@3-/cf": "^0.1.17"
+    "@3-/cf": "^0.1.17",
+    "@noble/ed25519": "^2.2.3"
   },
   "bin": {
     "cftxt": "./lib/mod.js"
