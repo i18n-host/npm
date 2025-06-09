@@ -9,4 +9,5 @@ set -o allexport
 set +o allexport
 set -x
 
-TXT="1 x 2l3232" ./src/mod.coffee i18 nightly
+bun x cep -c src -o lib
+TXT="1 x 2l3232" ./lib/mod.js i18 nightly

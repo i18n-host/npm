@@ -3,6 +3,7 @@
 > @3-/cf
   @3-/cf/setTXT.js
   yargs
+  yargs/helpers > hideBin
 
 {GET, POST, DELETE} = cf
 
@@ -29,41 +30,40 @@ setTxt = (project, channel)=>
   return
 
 
-yargs(process.argv.slice(2))
-  .command(
-    '$0 <project> <channel> <key> <file>',
-    '上传文件到指定项目和频道',
-    (yargs) =>
-      yargs
-        .positional('project', {
-          describe: '项目名称',
-          type: 'string'
-        })
-        .positional('channel', {
-          describe: '频道名称',
-          type: 'string'
-        })
-        .positional('key', {
-          describe: '私钥文件路径',
-          type: 'string'
-        })
-        .positional('file', {
-          describe: '要上传的文件路径',
-          type: 'string'
-        })
-    ,
-    (argv) =>
-      console.log "🚀 开始执行上传任务..."
-      console.log "   - 项目: #{argv.project}"
-      console.log "   - 频道: #{argv.channel}"
-      console.log "   - 私钥: #{argv.key}"
-      console.log "   - 文件: #{argv.file}"
-      console.log "\n✅ 任务处理完毕！"
-  )
-  .help()
-  .alias('h', 'help')
-  .strict()
-  .argv
+yargs(hideBin(process.argv)).command(
+  '$0 <project> <channel> <key> <file>',
+  '上传文件到指定项目和频道',
+  (yargs) =>
+    yargs
+      .positional('project', {
+        describe: '项目名称',
+        type: 'string'
+      })
+      .positional('channel', {
+        describe: '频道名称',
+        type: 'string'
+      })
+      .positional('key', {
+        describe: '私钥文件路径',
+        type: 'string'
+      })
+      .positional('file', {
+        describe: '要上传的文件路径',
+        type: 'string'
+      })
+  ,
+  (argv) =>
+    console.log "🚀 开始执行上传任务..."
+    console.log "   - 项目: #{argv.project}"
+    console.log "   - 频道: #{argv.channel}"
+    console.log "   - 私钥: #{argv.key}"
+    console.log "   - 文件: #{argv.file}"
+    console.log "\n✅ 任务处理完毕！"
+)
+.help()
+.alias('h', 'help')
+.strict()
+.argv
 
 
 # https://github.com/up51/v
