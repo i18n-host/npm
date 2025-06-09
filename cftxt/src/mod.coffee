@@ -4,20 +4,29 @@
   @3-/cf/setTXT.js
 {GET, POST, DELETE} = cf
 
-{HOST_LI,TXT} = process.env
 
-HOST_LI = HOST_LI.split(' ')
+setTxt = =>
+  {HOST_LI,TXT} = process.env
+  HOST_LI = HOST_LI.split(' ')
 
-[
-  project
-  channel
-] = process.argv.slice(2)
+  [
+    project
+    channel
+  ] = process.argv.slice(2)
 
-zone_id_li = (await Promise.all(
-  HOST_LI.map (i)=>GET('?name='+i)
-)).map ([i])=>i.id
+  zone_id_li = (await Promise.all(
+    HOST_LI.map (i)=>GET('?name='+i)
+  )).map ([i])=>i.id
 
-content = JSON.stringify(TXT)
+  content = JSON.stringify(TXT)
+  await Promise.allSettled HOST_LI.map (host, pos)=>
+    setTXT(
+      project+'-'+channel
+      host
+      zone_id_li[pos]
+      content
+    )
+  return
 
 # https://github.com/up51/v
 # https://
@@ -26,15 +35,6 @@ content = JSON.stringify(TXT)
 
 # ver
 # github.com/up51/v
-
-await Promise.allSettled HOST_LI.map (host, pos)=>
-  setTXT(
-    project+'-'+channel
-    host
-    zone_id_li[pos]
-    content
-  )
-
 
 # console.log await GET('?name=018007.xyz')
 # // cf.get)
