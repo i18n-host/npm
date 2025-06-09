@@ -35,5 +35,6 @@ export default (project, version, out_tar) =>
       version
       basename out_tar
     ].join('/')
-    createReadStream(out_tar)
+    =>
+      createReadStream(out_tar)
   )
