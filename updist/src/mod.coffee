@@ -3,8 +3,10 @@
 > @3-/cf
   @3-/cf/setTXT.js
   fs > readFileSync
+  @noble/ed25519 > createReadStream
   yargs
   yargs/helpers > hideBin
+
 
 {GET, POST, DELETE} = cf
 
@@ -29,7 +31,6 @@ setTxt = (project, channel, txt)=>
       content
     )
   return
-
 
 dist = (project, channel, sk_fp, file)=>
   key = readFileSync sk_fp
