@@ -44,7 +44,6 @@ distTar = (project, version, channel, sk_fp, filepath)=>
   hash.update ver_bin
 
   ver_b64 = ver_bin.toString('base64url')
-  console.log ver_b64
   new Promise(
     (resolve, reject)=>
       stream.on 'error', reject
@@ -69,7 +68,7 @@ distTar = (project, version, channel, sk_fp, filepath)=>
   )
 
 dist = (project, version, channel, sk_fp, dirpath)=>
-  tar = tmpdir()+'/'+basename(dirpath)+'.'+version+'.tar'
+  tar = tmpdir()+'/'+basename(dirpath)+'.'+version+'.tzst'
   if existsSync tar
     unlinkSync tar
   s = createWriteStream(tar)
@@ -89,7 +88,8 @@ dist = (project, version, channel, sk_fp, dirpath)=>
     return
 
   await distTar project, version, channel, sk_fp, tar
-  unlinkSync(tar)
+  console.log tar
+  # unlinkSync(tar)
   return
 
 
