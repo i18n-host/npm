@@ -13,8 +13,6 @@ HOST_LI = HOST_LI.split(' ')
   channel
 ] = process.argv.slice(2)
 
-
-
 zone_id_li = (await Promise.all(
   HOST_LI.map (i)=>GET('?name='+i)
 )).map ([i])=>i.id
