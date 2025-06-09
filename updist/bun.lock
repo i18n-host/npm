@@ -5,7 +5,7 @@
       "name": "@~8/updist",
       "dependencies": {
         "@3-/cf": "^0.1.17",
-        "@3-/ed25519_ph": "^0.1.1",
+        "@3-/ed25519_ph": "^0.1.2",
         "@3-/gh_release": "^0.1.3",
         "@3-/utf8": "^0.0.4",
         "@3-/vb": "^0.1.6",
@@ -24,7 +24,7 @@
 
     "@3-/cf": ["@3-/cf@0.1.17", "", { "dependencies": { "@3-/req": "^0.0.2" } }, "sha512-9GXlqGKH9C/z2ioqlo/0gKVxNSS9XoCUllwBNAQHOPxtQ8rCP+v9gSTUxiM/csB0MNiSD2NFe7LsJN2EAkNw9Q=="],
 
-    "@3-/ed25519_ph": ["@3-/ed25519_ph@0.1.1", "", {}, "sha512-83JanbulnAaivXNhEkclsgYg0k3E3WwiFGsCYURg1rtlv28NdKUjZwuWA9zDxRc9usOHkFxpDtzOKvBLoN5dGg=="],
+    "@3-/ed25519_ph": ["@3-/ed25519_ph@0.1.2", "", {}, "sha512-aGHZYB2CMAlOGPqBujTHGLfp9Fox2nZAskM1g3WmdsEUZ3quwwQs63rJLUOMy/JaYDq1THg6T2ixzAGoXAFN7g=="],
 
     "@3-/gh_release": ["@3-/gh_release@0.1.3", "", { "dependencies": { "@octokit/rest": "^22.0.0" } }, "sha512-21I2K+KvqkhyOW0g8KoddjxkztdaZEwCGDBt7jHxAGgWecU/RD7RD4bE13OB6dFh6LFKhAAU7PZuLcIn8JKyPw=="],
 
