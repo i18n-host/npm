@@ -27,6 +27,7 @@ content = JSON.stringify(TXT)
 # /0.2.104/x86_64-pc-windows-msvc.tar
 
 # ver
+# github.com/up51/v
 
 await Promise.allSettled HOST_LI.map (host, pos)=>
   setTXT(
