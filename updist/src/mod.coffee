@@ -2,10 +2,10 @@
 
 > @3-/cf
   @3-/cf/setTXT.js
+  crypto > createHash
   fs > readFileSync createReadStream
   yargs
   yargs/helpers > hideBin
-  libsodium-wrappers:sodium
 
 {GET, POST, DELETE} = cf
 
@@ -33,24 +33,21 @@ setTxt = (project, channel, txt)=>
 
 dist = (project, channel, sk_fp, filepath)=>
   key = readFileSync sk_fp
-  console.log sodium
-  # state = sodium.crypto_sign_init()
+  stream = createReadStream filepath
+  hash = createHash('sha3-256')
 
-  # stream = createReadStream filepath
-  # stream.pipe signature
-  # new Promise (resolve, reject)=>
-  #   stream.on 'error', reject
-  #   stream.on 'end', =>
-  #     sk = createPrivateKey {
-  #       key
-  #       format: 'der'
-  #       type: 'pkcs8'
-  #     }
-  #     signed = signature.sign(sk).toString 'hex'
-  #     console.log signed
-  #     resolve()
-  #     return
-  #   return
+  new Promise(
+    (resolve, reject)=>
+      stream.on 'error', reject
+      stream.on 'data', (chunk) =>
+        hash.update(chunk)
+        return
+      stream.on 'end', =>
+        console.log hash.digest()
+        resolve()
+        return
+      return
+  )
 
 argv = hideBin(process.argv)
 
