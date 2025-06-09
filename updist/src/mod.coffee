@@ -42,7 +42,7 @@ distTar = (project, version, channel, sk_fp, platform, dir, filepath)=>
   stream = createReadStream filepath
   hash = createHash('sha3-512')
   ver_bin = Buffer.from vbE version.split('.').map (i)=>Number.parseInt(i)
-  hash.update ver_bin
+  # hash.update ver_bin
 
   ver_b64 = ver_bin.toString('base64url')
   new Promise(
@@ -53,6 +53,7 @@ distTar = (project, version, channel, sk_fp, platform, dir, filepath)=>
         return
       stream.on 'end', =>
         hash = hash.digest()
+        console.log hash
         sign = ed25519ph.sign(
           hash
           key
