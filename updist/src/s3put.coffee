@@ -6,6 +6,8 @@ HTTPS = 'https://'
 
 {S3_LI} = process.env
 
+export S3_HOST_LI = []
+
 put = ossput S3_LI.split(' ').map (i)=>
   [
     endpoint
@@ -14,6 +16,8 @@ put = ossput S3_LI.split(' ').map (i)=>
     bucket
     download_prefix
   ] = i.split(';')
+
+  S3_HOST_LI.push download_prefix
 
   [
     bucket
