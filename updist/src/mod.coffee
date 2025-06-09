@@ -8,7 +8,7 @@
   os > tmpdir
   tar > c:createTar
   crypto > createHash
-  fs > readFileSync createReadStream createWriteStream existsSync unlinkSync mkdirSync
+  fs > readFileSync createReadStream createWriteStream existsSync unlinkSync mkdirSync rmdirSync
   yargs
   yargs/helpers > hideBin
   @noble/curves/ed25519 > ed25519ph
@@ -71,7 +71,11 @@ distTar = (project, version, channel, sk_fp, filepath)=>
 dist = (project, version, channel, sk_fp, dirpath)=>
   dir = join tmpdir(), basename(dirpath), version
 
+  if existsSync dir
+    rmdirSync dir, recursive:true, force:true
+
   mkdirSync dir,recursive:true
+
   tar = 'i'
 
   s = createWriteStream(tar)
