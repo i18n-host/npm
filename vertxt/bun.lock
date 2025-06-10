@@ -5,6 +5,7 @@
       "name": "@3-/vertxt",
       "dependencies": {
         "@3-/cf": "^0.1.18",
+        "@3-/read": "^0.1.4",
         "@3-/verb64": "^0.1.3",
         "@3-/write": "^0.0.2",
         "yargs": "^18.0.0",
@@ -15,6 +16,8 @@
     "@3-/caller_line": ["@3-/caller_line@0.0.1", "", {}, "sha512-ABXNqaN3kT4CBAdi43yjQQk7gbv7wkUAvlUIk+EC6DKptfiRSJtsRnYAjX17qYprdtpnYd5o8uESbS4xEP1hSw=="],
 
     "@3-/cf": ["@3-/cf@0.1.18", "", { "dependencies": { "@3-/req": "^0.0.2" } }, "sha512-p4BwY0c5CWOQ/4ILamjDanAJ7uEWGYOT/vF7aXqwu7IbI2r3PWWxdI8yqsSr+W7lvG0aE1/40qHrdb9qUSRtLQ=="],
+
+    "@3-/read": ["@3-/read@0.1.4", "", {}, "sha512-PZDRfIFuaFNAW6VjWupa7+g/3GbhES6shAgETN/RXtTdJxcIwl9HSBMy2sdfRqAc/FUeUJFL3F8PfpsdZbC8xg=="],
 
     "@3-/req": ["@3-/req@0.0.2", "", { "dependencies": { "@3-/retry": "^0.0.1", "https-proxy-agent": "^7.0.4", "msgpackr": "^1.10.1", "node-fetch": "^3.3.2" } }, "sha512-ZkNO77MncKh6LERczNLIwODsaIw/aDVlj49fTclV7cqucRB3Bq+Yd3+BALD6VISJtV4XlcL8d0dbVSMQg5cNTw=="],
 

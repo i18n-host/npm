@@ -1,9 +1,11 @@
 > ./set.js
   fs > existsSync
   @3-/write
+  @3-/read
 
 < (ver_yml, project, version)=>
   if existsSync ver_yml
+    read ver_yml
 
 
   console.log {
