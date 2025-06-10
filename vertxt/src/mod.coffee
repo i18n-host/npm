@@ -12,7 +12,7 @@ yargs(argv).command(
   (yargs) =>
     yargs
       .positional('ver_yml', {
-        describe: '版本日志',
+        describe: '版本历史',
         type: 'string'
       })
       .positional('project', {

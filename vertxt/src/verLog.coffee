@@ -2,14 +2,24 @@
   fs > existsSync
   @3-/write
   @3-/read
+  semver > compare
 
 < (ver_yml, project, version)=>
-  txt_li = if existsSync(ver_yml) then read(ver_yml).trim().split('\n').filter(
+  ver_txt = if existsSync(ver_yml) then read(ver_yml).trim() else ''
+  txt_li =  ver_txt.split('\n').filter(
     (i)=>not i.startsWith('#')
-  ) else []
+  ).map(
+    (i)=>
+      i.split(' ')
+  )
 
-  console.log "#{version} #{(new Date).toISOString().slice(0,16)}"
-  # txt_li.push version
+  txt_li.sort (a,b)=>
+    compare(a[0],b[0])
+
+
+  ver_txt += "\n#{version} #{(new Date).toISOString().slice(0,16)}"
+
+  write(ver_yml, ver_txt)
 
   console.log {
     ver_yml
