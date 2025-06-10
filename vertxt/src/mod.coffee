@@ -17,7 +17,7 @@ TXT_HOST_LI = TXT_HOST_LI.split(' ')
 
 SET_TXT = ";G#{GITHUB_OWNER}/#{GITHUB_REPO};"+DOWN_HOST_LI
 
-set = (project, version, channel)=>
+set = (channel, project, version)=>
   verb64 = verb64E version
   txt = verb64 + SET_TXT
   # [
@@ -44,20 +44,20 @@ set = (project, version, channel)=>
 argv = hideBin(process.argv)
 
 yargs(argv).command(
-  '$0 <project> <ver> <channel>',
+  '$0 <channel> <project> <ver>',
   '上传文件到指定项目和频道',
   (yargs) =>
     yargs
+      .positional('channel', {
+        describe: '发布的频道 alpha/beta/stable',
+        type: 'string'
+      })
       .positional('project', {
         describe: '项目名称',
         type: 'string'
       })
       .positional('ver', {
         describe: '项目版本',
-        type: 'string'
-      })
-      .positional('channel', {
-        describe: '发布的频道 alpha/beta/stable',
         type: 'string'
       })
     return
