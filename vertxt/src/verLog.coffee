@@ -4,7 +4,9 @@
   @3-/read
 
 < (ver_yml, project, version)=>
-  txt_li = if existsSync(ver_yml) then read(ver_yml).trim().split('\n') else []
+  txt_li = if existsSync(ver_yml) then read(ver_yml).trim().split('\n').filter(
+    (i)=>not i.startsWith('#')
+  ) else []
 
   console.log "#{version} #{Math.round new Date / 1000}"
   # txt_li.push version
