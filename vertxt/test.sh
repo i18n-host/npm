@@ -12,4 +12,4 @@ set -ex
 
 bun x cep -c src -o lib
 
-./lib/mod.js ver.yml i18 0.1.25
+./lib/mod.js ver.yml i18 0.1.27

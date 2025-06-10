@@ -22,14 +22,10 @@
   txt_li.sort (a,b)=>
     compare(a[0],b[0])
 
-  console.log compare(txt_li.at(-1)[0], version)
-  ver_txt += "\n#{version} #{(new Date).toISOString().slice(0,16)}"
+  if compare(txt_li.at(-1)[0], version) < 0
+    await set 'alpha', project, version
 
+  ver_txt += "\n#{version} #{(new Date).toISOString().slice(0,16)}"
   write(ver_yml, ver_txt)
 
-  console.log {
-    ver_yml
-    project
-    version
-  }
   return
