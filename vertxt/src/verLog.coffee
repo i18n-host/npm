@@ -4,8 +4,7 @@
   @3-/read
 
 < (ver_yml, project, version)=>
-  if existsSync ver_yml
-    read ver_yml
+  txt_li = if existsSync(ver_yml) then read(ver_yml) else []
 
 
   console.log {
