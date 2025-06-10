@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 DIR=$(realpath $0) && DIR=${DIR%/*}
-cd $DIR
 set -e
+cd $DIR/../../conf/env
 set -o allexport
-. ../../conf/env/cf.env
-. ../../conf/env/github.env
-. ../../conf/i18/upgrade.sh
+. cf.env
+. github.env
+. upgrade.env
 set +o allexport
+cd $DIR
 set -x
 
 bun x cep -c src -o lib
