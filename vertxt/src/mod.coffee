@@ -1,59 +1,17 @@
 #!/usr/bin/env coffee
 
-> @3-/cf
-  @3-/cf/setTXT.js
-  yargs
+> yargs
   yargs/helpers > hideBin
-  @3-/verb64/verb64E.js
-
-{
-  GET
-} = cf
-
-{
-  TXT_HOST_LI
-  DOWN_HOST_LI
-  GITHUB_OWNER
-  GITHUB_REPO
-} = process.env
-
-TXT_HOST_LI = TXT_HOST_LI.split(' ')
-
-ZONE_ID_LI = (await Promise.all(
-  TXT_HOST_LI.map (i)=>GET('?name='+i)
-)).map ([i])=>i.id
-
-SET_TXT = ";G#{GITHUB_OWNER}/#{GITHUB_REPO};"+DOWN_HOST_LI
-
-set = (channel, project, version)=>
-  verb64 = verb64E version
-  txt = JSON.stringify verb64 + SET_TXT
-
-  prefix = project+'-'+channel
-
-  await Promise.all TXT_HOST_LI.map (host, pos)=>
-    console.log prefix+'.'+host
-    setTXT(
-      prefix
-      host
-      ZONE_ID_LI[pos]
-      txt
-    )
-  return
-
-verLog = ()=>
-
-
 
 argv = hideBin(process.argv)
 
 yargs(argv).command(
-  '$0 <channel> <project> <ver>',
+  '$0 <ver_yml> <project> <ver>',
   '上传文件到指定项目和频道',
   (yargs) =>
     yargs
-      .positional('channel', {
-        describe: '发布的频道 alpha/beta/stable',
+      .positional('ver_yml', {
+        describe: '版本日志',
         type: 'string'
       })
       .positional('project', {
@@ -66,7 +24,7 @@ yargs(argv).command(
       })
     return
   =>
-    await set ...argv
+    await verLog ...argv
     process.exit(0)
     return
 )
