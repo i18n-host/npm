@@ -8,7 +8,7 @@
     (i)=>not i.startsWith('#')
   ) else []
 
-  console.log "#{version} #{Math.round new Date / 1000}"
+  console.log "#{version} #{(new Date).toISOString().slice(0,16)}"
   # txt_li.push version
 
   console.log {
