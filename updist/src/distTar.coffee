@@ -18,7 +18,6 @@ export default (project, version, sk_fp, dir, filepath)=>
   ed25519 = Ed25519 readFileSync sk_fp
   ed25519.update ver_bin
 
-  ver_b64 = ver_bin.toString('base64url')
   new Promise(
     (resolve, reject)=>
       stream.on 'error', reject
