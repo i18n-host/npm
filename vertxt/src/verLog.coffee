@@ -6,7 +6,7 @@
 < (ver_yml, project, version)=>
   txt_li = if existsSync(ver_yml) then read(ver_yml).trim().split('\n') else []
 
-  console.log Math.round new Date / 1000
+  console.log "#{version} #{Math.round new Date / 1000}"
   # txt_li.push version
 
   console.log {
