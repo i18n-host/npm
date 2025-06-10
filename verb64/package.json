@@ -15,5 +15,8 @@
     "*"
   ],
   "scripts": {},
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@3-/vb": "^0.1.6"
+  }
 }

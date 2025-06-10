@@ -1,6 +1,9 @@
 #!/usr/bin/env coffee
 
-import verb64 from './lib/mod.js'
+import verb64E from './src/verb64E.coffee'
+import verb64D from './src/verb64D.coffee'
 
-console.log verb64()
+ver = verb64E('15.2.3')
+console.log ver
+console.log verb64D(ver)
 
