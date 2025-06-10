@@ -7,17 +7,25 @@
   @3-/verb64/verb64E.js
 
 {GET, POST, DELETE} = cf
-{HOST_LI} = process.env
-HOST_LI = HOST_LI.split(' ')
+{
+  TXT_HOST_LI
+  DOWN_HOST_LI
+  GITHUB_OWNER
+  GITHUB_REPO
+} = process.env
+TXT_HOST_LI = TXT_HOST_LI.split(' ')
+
+SET_TXT = ";G#{GITHUB_OWNER}/#{GITHUB_REPO};"+DOWN_HOST_LI
 
 set = (project, version, channel)=>
   verb64 = verb64E version
+  txt = verb64 + SET_TXT
   # [
   #   project
   #   channel
   # ] = process.argv.slice(2)
 
-  console.log project, version, verb64, channel
+  console.log project, version, txt, channel
   # zone_id_li = (await Promise.all(
   #   HOST_LI.map (i)=>GET('?name='+i)
   # )).map ([i])=>i.id
