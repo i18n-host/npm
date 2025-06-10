@@ -41,6 +41,9 @@ set = (channel, project, version)=>
     )
   return
 
+verLog = ()=>
+
+
 
 argv = hideBin(process.argv)
 
