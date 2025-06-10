@@ -22,7 +22,7 @@
   txt_li.sort (a,b)=>
     compare(a[0],b[0])
 
-  console.log txt_li
+  console.log compare(txt_li.at(-1)[0], version)
   ver_txt += "\n#{version} #{(new Date).toISOString().slice(0,16)}"
 
   write(ver_yml, ver_txt)
