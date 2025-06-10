@@ -7,7 +7,7 @@
   @3-/verb64/verb64E.js
 
 {
-  GET, POST, DELETE
+  GET
 } = cf
 
 {
@@ -32,7 +32,7 @@ set = (channel, project, version)=>
   prefix = project+'-'+channel
 
   await Promise.all TXT_HOST_LI.map (host, pos)=>
-    console.log host
+    console.log prefix+'.'+host
     setTXT(
       prefix
       host
