@@ -18,6 +18,7 @@
   "type": "module",
   "dependencies": {
     "@3-/cf": "^0.1.17",
+    "@3-/verb64": "^0.1.2",
     "yargs": "^18.0.0"
   }
 }

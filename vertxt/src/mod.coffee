@@ -4,18 +4,20 @@
   @3-/cf/setTXT.js
   yargs
   yargs/helpers > hideBin
+  @3-/verb64/verb64E.js
 
 {GET, POST, DELETE} = cf
 {HOST_LI} = process.env
 HOST_LI = HOST_LI.split(' ')
 
 set = (project, version, channel)=>
+  verb64 = verb64E version
   # [
   #   project
   #   channel
   # ] = process.argv.slice(2)
 
-  console.log project, version, channel
+  console.log project, version, verb64, channel
   # zone_id_li = (await Promise.all(
   #   HOST_LI.map (i)=>GET('?name='+i)
   # )).map ([i])=>i.id

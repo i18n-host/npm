@@ -9,7 +9,8 @@
   "author": "i18n.host@gmail.com",
   "license": "MulanPSL-2.0",
   "exports": {
-    ".": "./lib/mod.js"
+    ".": "./lib/mod.js",
+    "./*": "./lib/*"
   },
   "files": [
     "*"
