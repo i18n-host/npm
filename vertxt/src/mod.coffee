@@ -2,6 +2,7 @@
 
 > yargs
   yargs/helpers > hideBin
+  ./verLog.js
 
 argv = hideBin(process.argv)
 
