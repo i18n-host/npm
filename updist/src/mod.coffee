@@ -7,7 +7,7 @@
 argv = hideBin(process.argv)
 
 yargs(argv).command(
-  '$0 <project> <ver> <channel> <key> <file>',
+  '$0 <project> <ver> <key> <file>',
   '上传文件到指定项目和频道',
   (yargs) =>
     yargs
@@ -17,10 +17,6 @@ yargs(argv).command(
       })
       .positional('ver', {
         describe: '项目版本',
-        type: 'string'
-      })
-      .positional('channel', {
-        describe: '频道名称',
         type: 'string'
       })
       .positional('key', {

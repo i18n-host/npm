@@ -12,7 +12,7 @@
   GITHUB_REPO
 } = process.env
 
-export default (project, version, channel, sk_fp, dir, filepath)=>
+export default (project, version, sk_fp, dir, filepath)=>
   stream = createReadStream filepath
   ver_bin = Buffer.from vbE version.split('.').map (i)=>Number.parseInt(i)
   ed25519 = Ed25519 readFileSync sk_fp

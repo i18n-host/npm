@@ -7,7 +7,7 @@
   fs > createWriteStream existsSync mkdirSync rmSync
   ./distTar.js
 
-export default (project, version, channel, sk_fp, dirpath)=>
+export default (project, version, sk_fp, dirpath)=>
   dir = join tmpdir(), project, version, basename(dirpath)
 
   if existsSync dir
@@ -35,5 +35,5 @@ export default (project, version, channel, sk_fp, dirpath)=>
     s.on 'error', reject
     return
 
-  await distTar project, version, channel, sk_fp, dir, tar
+  await distTar project, version, sk_fp, dir, tar
   return
