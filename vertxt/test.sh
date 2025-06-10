@@ -5,6 +5,7 @@ cd $DIR
 
 set -a
 . ../../conf/env/upgrade.env
+. ../../conf/env/cf.env
 set +a
 
 set -ex

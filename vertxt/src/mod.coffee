@@ -6,38 +6,39 @@
   yargs/helpers > hideBin
   @3-/verb64/verb64E.js
 
-{GET, POST, DELETE} = cf
+{
+  GET, POST, DELETE
+} = cf
+
 {
   TXT_HOST_LI
   DOWN_HOST_LI
   GITHUB_OWNER
   GITHUB_REPO
 } = process.env
+
 TXT_HOST_LI = TXT_HOST_LI.split(' ')
+
+ZONE_ID_LI = (await Promise.all(
+  TXT_HOST_LI.map (i)=>GET('?name='+i)
+)).map ([i])=>i.id
 
 SET_TXT = ";G#{GITHUB_OWNER}/#{GITHUB_REPO};"+DOWN_HOST_LI
 
 set = (channel, project, version)=>
   verb64 = verb64E version
-  txt = verb64 + SET_TXT
-  # [
-  #   project
-  #   channel
-  # ] = process.argv.slice(2)
+  txt = JSON.stringify verb64 + SET_TXT
 
-  console.log project, version, txt, channel
-  # zone_id_li = (await Promise.all(
-  #   HOST_LI.map (i)=>GET('?name='+i)
-  # )).map ([i])=>i.id
-  #
-  # content = JSON.stringify(txt)
-  # await Promise.allSettled HOST_LI.map (host, pos)=>
-  #   setTXT(
-  #     project+'-'+channel
-  #     host
-  #     zone_id_li[pos]
-  #     content
-  #   )
+  prefix = project+'-'+channel
+
+  await Promise.all TXT_HOST_LI.map (host, pos)=>
+    console.log host
+    setTXT(
+      prefix
+      host
+      ZONE_ID_LI[pos]
+      txt
+    )
   return
 
 
