@@ -75,7 +75,11 @@
   if this_release.length > 0
     txt.push this_release.join('|')
 
-  console.log can_dist
+  for [channel, [pos, i]] from Object.entries can_dist
+    if compare(release[channel], i[0]) < 0
+      await set channel, project, i[0]
+      # ver_li[pos]
+
 
   ver_li.push txt.join(' ')
   write(ver_yml, ver_li.join('\n'))
