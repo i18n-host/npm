@@ -4,11 +4,14 @@
     "": {
       "name": "@3-/github",
       "dependencies": {
+        "@3-/utf8": "^0.0.4",
         "@octokit/rest": "^22.0.0",
       },
     },
   },
   "packages": {
+    "@3-/utf8": ["@3-/utf8@0.0.4", "", {}, "sha512-hoVIOCX70JteiRPzRZ8Yw51kb/H9dWxx55oW+RQ38hHE8+/uOIriJZ024HhCYaLDKykUyDoknRbzKjjMQ++new=="],
+
     "@octokit/auth-token": ["@octokit/auth-token@6.0.0", "", {}, "sha512-P4YJBPdPSpWTQ1NU4XYdvHvXJJDxM6YwpS0FZHRgP7YFkdVxsWcpWGy/NVqlAA7PcPCnMacXlRm1y2PFZRWL/w=="],
 
     "@octokit/core": ["@octokit/core@7.0.2", "", { "dependencies": { "@octokit/auth-token": "^6.0.0", "@octokit/graphql": "^9.0.1", "@octokit/request": "^10.0.2", "@octokit/request-error": "^7.0.0", "@octokit/types": "^14.0.0", "before-after-hook": "^4.0.0", "universal-user-agent": "^7.0.0" } }, "sha512-ODsoD39Lq6vR6aBgvjTnA3nZGliknKboc9Gtxr7E4WDNqY24MxANKcuDQSF0jzapvGb3KWOEDrKfve4HoWGK+g=="],
