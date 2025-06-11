@@ -6,6 +6,6 @@ console.log await ghGet {
   owner:'i18n-host',
   repo:'i18',
   branch:'dev',
-  path:'test.sh'
+  path:'test.sh2'
 }
 
