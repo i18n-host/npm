@@ -4,7 +4,7 @@
 
 import { Octokit } from "@octokit/rest"
 
-GH = new Octokit({
+export GH = new Octokit({
   auth: process.env.GITHUB_TOKEN
 })
 
@@ -25,3 +25,4 @@ export ghGetTxt = (conf)=>
   return r
 
 export ghSet = (conf)=>
+  GH.repos.createOrUpdateFileContent(conf)
