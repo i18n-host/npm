@@ -1,6 +1,6 @@
 {
   "name": "@3-/vertxt",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/i18n-host/npm.git"
@@ -23,5 +23,8 @@
     "@3-/write": "^0.0.2",
     "semver": "^7.7.2",
     "yargs": "^18.0.0"
+  },
+  "bin": {
+    "vertxt": "./lib/mod.js"
   }
 }
