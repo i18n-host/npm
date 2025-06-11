@@ -17,9 +17,12 @@
     if not i or i.startsWith('#')
       continue
     i = i.split(' ')
-    i[1] = Math.round new Date(i[1]) / 1e3
-    if i[2]
-      for j from i[2].split('|')
+
+    [ver, date, dist] = i
+
+    i[1] = Math.round new Date(date) / 1e3
+    if dist
+      for j from dist.split('|')
         t = release[j]
         if not t
           release[j] = t = []
@@ -29,7 +32,8 @@
 
   if exist.has version
     return
-  #
+
+  console.log release
   # if ver_li.length > 0
   #   ver_li.sort (a,b)=>
   #     compare(a[0],b[0])
