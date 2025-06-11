@@ -13,7 +13,7 @@ export ghGet = (conf)=>
   try
     r = await GH.repos.getContent(conf)
   catch err
-    if err.response.status == 404
+    if err?.response?.status == 404
       return
     throw err
   return Buffer.from r.data.content,'base64'
