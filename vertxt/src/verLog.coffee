@@ -78,7 +78,9 @@
   for [channel, [pos, i]] from Object.entries can_dist
     if compare(release[channel], i[0]) < 0
       await set channel, project, i[0]
-      # ver_li[pos]
+      i[2].push channel
+      # 不修改i[2]为字符串，避免一个版本发布多个频道的时候出错
+      ver_li[pos] = i.slice(0,2).join(' ')+' '+i[2].join('|')
 
 
   ver_li.push txt.join(' ')
