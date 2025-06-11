@@ -5,10 +5,10 @@
       "name": "@3-/vertxt",
       "dependencies": {
         "@3-/cf": "^0.1.18",
+        "@3-/github": "^0.1.1",
         "@3-/read": "^0.1.4",
         "@3-/verb64": "^0.1.3",
         "@3-/write": "^0.0.2",
-        "@octokit/rest": "^22.0.0",
         "semver": "^7.7.2",
         "yargs": "^18.0.0",
       },
@@ -19,6 +19,8 @@
 
     "@3-/cf": ["@3-/cf@0.1.18", "", { "dependencies": { "@3-/req": "^0.0.2" } }, "sha512-p4BwY0c5CWOQ/4ILamjDanAJ7uEWGYOT/vF7aXqwu7IbI2r3PWWxdI8yqsSr+W7lvG0aE1/40qHrdb9qUSRtLQ=="],
 
+    "@3-/github": ["@3-/github@0.1.1", "", { "dependencies": { "@3-/utf8": "^0.0.4", "@octokit/rest": "^22.0.0" } }, "sha512-9EiFj6JIx5cy9u5nCZpZjdYZQ9RdEK9U7GBhDg8kVYVm9amzoT6tIJy/eciqourfWs80ESMxJrXviJyS7PiWqg=="],
+
     "@3-/read": ["@3-/read@0.1.4", "", {}, "sha512-PZDRfIFuaFNAW6VjWupa7+g/3GbhES6shAgETN/RXtTdJxcIwl9HSBMy2sdfRqAc/FUeUJFL3F8PfpsdZbC8xg=="],
 
     "@3-/req": ["@3-/req@0.0.2", "", { "dependencies": { "@3-/retry": "^0.0.1", "https-proxy-agent": "^7.0.4", "msgpackr": "^1.10.1", "node-fetch": "^3.3.2" } }, "sha512-ZkNO77MncKh6LERczNLIwODsaIw/aDVlj49fTclV7cqucRB3Bq+Yd3+BALD6VISJtV4XlcL8d0dbVSMQg5cNTw=="],
@@ -26,6 +28,8 @@
     "@3-/retry": ["@3-/retry@0.0.1", "", { "dependencies": { "@3-/caller_line": "^0.0.1", "@3-/sleep": "^0.0.3" } }, "sha512-XB/6DNobSb/ZEeWyHqMGyHUHRTOjXCEIXLaWqdojlHJuiScnK7gkXYzuM1bU0t9AFl4ejl/COdo7ekKtyDtPLQ=="],
 
     "@3-/sleep": ["@3-/sleep@0.0.3", "", {}, "sha512-QcbMvCjN1iylVzOv8VGuAwHKFtRxbNmAenYc9OfvxA/Dl9vyBoSGO3bRovLkYL2jm4lx/R33SPJ8f6JwpKbC+w=="],
+
+    "@3-/utf8": ["@3-/utf8@0.0.4", "", {}, "sha512-hoVIOCX70JteiRPzRZ8Yw51kb/H9dWxx55oW+RQ38hHE8+/uOIriJZ024HhCYaLDKykUyDoknRbzKjjMQ++new=="],
 
     "@3-/vb": ["@3-/vb@0.1.6", "", {}, "sha512-oxv/UD8RR/H9k8RaOA+3fqNuhPhrEZL+xDjtrHt+kZK8W4AEp/NcGBcNU1JtIG6/MQvEJ5IeHq9i7SX1JBA++Q=="],
 

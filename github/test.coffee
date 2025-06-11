@@ -11,7 +11,7 @@ conf = {
 
 console.log await ghGetTxt conf
 
-# # conf.sha = "a70488abd3734dd5566d19bb4ef022538f232376"
+# conf.sha = "a70488abd3734dd5566d19bb4ef022538f232376"
 # conf.path = 'Cargo.lock1'
 # conf.owner = 'i18n-dev'
 # conf.repo = 'ver'
