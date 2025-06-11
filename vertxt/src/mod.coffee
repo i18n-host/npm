@@ -2,7 +2,7 @@
 
 > yargs
   yargs/helpers > hideBin
-  ./verLog.js
+  ./vertxt.js
 
 argv = hideBin(process.argv)
 
@@ -25,7 +25,7 @@ yargs(argv).command(
       })
     return
   =>
-    await verLog ...argv
+    await vertxt ...argv
     process.exit(0)
     return
 )
