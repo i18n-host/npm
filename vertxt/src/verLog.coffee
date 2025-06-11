@@ -5,21 +5,27 @@
   semver > compare
 
 < (ver_yml, project, version)=>
+  ver_txt = (
+    if existsSync(ver_yml) then read(ver_yml).trim() else ''
+  ).split('\n')
+
+  release = {}
   exist = new Set
-  ver_txt = if existsSync(ver_yml) then read(ver_yml).trim() else ''
-  ver_li =  ver_txt.split('\n').filter(
-    (i)=>
-      i = i.trim()
-      i and not i.startsWith('#')
-  ).map(
-    (i)=>
-      i = i.split(' ')
-      i[1] = Math.round new Date(i[1]) / 1e3
-      if i[2]
-        i[2] = i[2].split('|')
-      exist.add i[0]
-      i
-  )
+
+  for i,pos in ver_txt
+    i = i.trim()
+    if not i or i.startsWith('#')
+      continue
+    i = i.split(' ')
+    i[1] = Math.round new Date(i[1]) / 1e3
+    if i[2]
+      for j from i[2].split('|')
+        t = release[j]
+        if not t
+          release[j] = t = []
+        t.push []
+
+    exist.add i[0]
 
   if exist.has version
     return
