@@ -5,9 +5,7 @@
   semver > compare
 
 < (ver_yml, project, version)=>
-  ver_li = (
-    if existsSync(ver_yml) then read(ver_yml).trim() else ''
-  ).split('\n')
+  ver_li = if existsSync(ver_yml) then read(ver_yml).trim().split('\n') else []
 
   release = {}
   exist = new Set
