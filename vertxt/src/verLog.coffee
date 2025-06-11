@@ -12,7 +12,7 @@
   ).map(
     (i)=>
       i = i.split(' ')
-      i[1] = new Date(i[1]) - 0
+      i[1] = Math.round new Date(i[1]) / 1e3
       exist.add i[0]
       i
   )
