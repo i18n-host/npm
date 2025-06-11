@@ -1,6 +1,11 @@
 #!/usr/bin/env coffee
 
-import github from './lib/mod.js'
+import {ghGet,ghSet} from './lib/mod.js'
 
-console.log github()
+console.log await ghGet {
+  owner:'i18n-host',
+  repo:'i18',
+  branch:'dev',
+  path:'test.sh'
+}
 
