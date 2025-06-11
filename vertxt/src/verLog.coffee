@@ -10,6 +10,8 @@
   release = {}
   exist = new Set
 
+  now_ts = new Date / 1e3
+  stable_ts = now_ts - 20
 
   alpha = 1
 
