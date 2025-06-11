@@ -4,18 +4,22 @@
   @3-/read
   semver > compare
 
-< (ver_yml, project, version)=>
+DAY = 864e5
+
+daystr = (date)=>date.toISOString().slice(0,10)
+
+< (ver_yml, project, version, duration)=>
   ver_li = if existsSync(ver_yml) then read(ver_yml).trim().split('\n') else []
 
   release = {}
 
-  now_ts = new Date / 1e3
+  now_ts = new Date / DAY
 
-  beta = now_ts - 864e3
+  beta = now_ts - duration
 
   dist_ts = Object.entries {
     beta
-    stable: beta - 864e3
+    stable: beta - duration
   }
 
   alpha = 1
@@ -36,7 +40,7 @@
       when 1
         alpha = 0
 
-    i[1] = ts = Math.round new Date(date) / 1e3
+    i[1] = ts = Math.round new Date(date) / DAY
 
     dist = if dist then dist.split('|') else []
     i[2] = dist
@@ -59,7 +63,7 @@
 
   txt =[
     version
-    (new Date).toISOString().slice(0,10)
+    daystr(new Date)
   ]
 
   this_release = []
@@ -80,7 +84,7 @@
       await set channel, project, i[0]
       i[2].push channel
       # 不修改i[2]为字符串，避免一个版本发布多个频道的时候出错
-      ver_li[pos] = i.slice(0,2).join(' ')+' '+i[2].join('|')
+      ver_li[pos] = i[0]+' '+daystr(new Date(i[1]*DAY))+' '+i[2].join('|')
 
   ver_li.push txt.join(' ')
   write(ver_yml, ver_li.join('\n'))
