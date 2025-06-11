@@ -32,15 +32,16 @@
         alpha = 0
 
     i[1] = ts = Math.round new Date(date) / 1e3
-    if ts < stable_ts
-
+    # if ts < stable_ts
 
     if dist
       for j from dist.split('|')
         t = release[j]
-        if not t
-          release[j] = t = []
-        t.push i
+        if t
+          if compare(t, ver) < 0
+            release[j] = ver
+        else
+          release[j] = ver
 
 
   if exist.has version
