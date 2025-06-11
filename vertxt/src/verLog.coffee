@@ -11,8 +11,13 @@
   exist = new Set
 
   now_ts = new Date / 1e3
-  beta_ts = now_ts - 864e3
-  stable_ts = now_ts - 864e3*2
+
+  beta = now_ts - 864e3
+
+  dist_ts = {
+    beta
+    stable: beta - 864e3
+  }
 
   alpha = 1
 
@@ -45,10 +50,11 @@
       else
         release[j] = ver
 
-    if ts < stable_ts
-      console.log i
-    if ts < beta_ts
-      console.log i
+    # if ts < stable_ts
+    #   console.log i
+    #
+    # if ts < beta_ts
+    #   console.log i
 
   if exist.has version
     return
@@ -62,7 +68,7 @@
   if alpha
     await set 'alpha', project, version
 
-  for i from ['beta', 'stable']
+  for i from Object.keys dist_ts
     if not release[i]
       await set i, project, version
       this_release.push i
