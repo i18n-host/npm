@@ -1,4 +1,5 @@
 > ./set.js
+  ./verdb.js
   fs > existsSync
   @3-/write
   @3-/read
@@ -8,8 +9,11 @@ DAY = 864e5
 
 daystr = (date)=>date.toISOString().slice(0,10)
 
-< (ver_yml, project, version, duration)=>
-  ver_li = if existsSync(ver_yml) then read(ver_yml).trim().split('\n') else []
+< (project, version, duration)=>
+  [
+    verSet
+    ver_li
+  ] = await verdb(project)
 
   release = {}
 
@@ -25,7 +29,6 @@ daystr = (date)=>date.toISOString().slice(0,10)
   alpha = 1
 
   can_dist = {}
-
   for i,pos in ver_li
     i = i.trim()
     if not i or i.startsWith('#')
@@ -87,6 +90,6 @@ daystr = (date)=>date.toISOString().slice(0,10)
       ver_li[pos] = i[0]+' '+daystr(new Date(i[1]*DAY))+' '+i[2].join('|')
 
   ver_li.push txt.join(' ')
-  write(ver_yml, ver_li.join('\n'))
+  await verSet(ver_li.join('\n'))
 
   return

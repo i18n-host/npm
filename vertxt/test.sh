@@ -6,10 +6,11 @@ cd $DIR
 set -a
 . ../../conf/env/upgrade.env
 . ../../conf/env/cf.env
+. ../../conf/env/github.env
 set +a
 
 set -ex
 
 bun x cep -c src -o lib
 
-./lib/mod.js ver.yml i18 0.1.$EPOCHSECONDS 2
+./lib/mod.js i18 0.1.1 9

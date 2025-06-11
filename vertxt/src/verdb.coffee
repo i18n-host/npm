@@ -14,11 +14,11 @@ saver = (conf)=>
     ).toString('base64')
     ghSet conf
 
-< verLi = (project)=>
+< (project)=>
   conf = {
     owner: GITHUB_OWNER
     repo: GITHUB_REPO
-    path: project+'.yml'
+    path: project
   }
   r = await ghGetTxt conf
 
@@ -27,9 +27,7 @@ saver = (conf)=>
   ]
   if r
     conf.sha = r[1]
-    result.push [
-      r[0].trim().split('\n')
-    ]
+    result.push r[0].trim().split('\n')
   else
     result.push []
   result

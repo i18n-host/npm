@@ -7,14 +7,10 @@
 argv = hideBin(process.argv)
 
 yargs(argv).command(
-  '$0 <ver_yml> <project> <ver> <duration>',
+  '$0 <project> <ver> <duration>',
   '上传文件到指定项目和频道',
   (yargs) =>
     yargs
-      .positional('ver_yml', {
-        describe: '版本历史',
-        type: 'string'
-      })
       .positional('project', {
         describe: '项目名称',
         type: 'string'
