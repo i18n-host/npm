@@ -75,8 +75,6 @@
   if this_release.length > 0
     txt.push this_release.join('|')
 
-  for [channel, li] from Object.entries release
-    console.log channel, li
   # if ver_li.length > 0
   #   ver_li.sort (a,b)=>
   #     compare(a[0],b[0])
