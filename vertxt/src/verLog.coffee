@@ -43,7 +43,6 @@
         else
           release[j] = ver
 
-  console.log {release}
   if exist.has version
     return
 
