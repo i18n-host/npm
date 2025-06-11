@@ -31,7 +31,10 @@
       when 1
         alpha = 0
 
-    i[1] = Math.round new Date(date) / 1e3
+    i[1] = ts = Math.round new Date(date) / 1e3
+    if ts < stable_ts
+
+
     if dist
       for j from dist.split('|')
         t = release[j]
@@ -59,7 +62,8 @@
   if this_release.length > 0
     txt.push this_release.join('|')
 
-  console.log release
+  for [channel, li] from Object.entries release
+    console.log channel, li
   # if ver_li.length > 0
   #   ver_li.sort (a,b)=>
   #     compare(a[0],b[0])
