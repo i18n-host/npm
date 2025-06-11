@@ -32,19 +32,22 @@
         alpha = 0
 
     i[1] = ts = Math.round new Date(date) / 1e3
-    if ts < stable_ts
-      console.log i
-    if ts < beta_ts
-      console.log i
 
     if dist
-      for j from dist.split('|')
+      dist = dist.split('|')
+      i[2] = dist
+      for j from dist
         t = release[j]
         if t
           if compare(t, ver) < 0
             release[j] = ver
         else
           release[j] = ver
+
+    if ts < stable_ts
+      console.log i
+    if ts < beta_ts
+      console.log i
 
   if exist.has version
     return
