@@ -50,8 +50,11 @@
 
     for [channel, before] from dist_ts
       if ts < before
-        console.log channel, ts
-
+        pre = can_dist[channel]
+        if pre
+          console.log 'TODO'
+        else
+          can_dist[channel] = [pos, i]
 
   txt =[
     version
@@ -66,17 +69,12 @@
     if not release[i]
       await set i, project, version
       this_release.push i
+      delete can_dist[i]
 
   if this_release.length > 0
     txt.push this_release.join('|')
 
-  # if ver_li.length > 0
-  #   ver_li.sort (a,b)=>
-  #     compare(a[0],b[0])
-  #
-  #   if compare(ver_li.at(-1)[0], version) < 0
-  #
-  # console.log ver_li
+  console.log can_dist
 
   ver_li.push txt.join(' ')
   write(ver_yml, ver_li.join('\n'))
