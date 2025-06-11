@@ -27,6 +27,7 @@ SET_TXT = ";G#{GITHUB_OWNER}/#{GITHUB_REPO};"+DOWN_HOST_LI
 
   prefix = project+'-'+channel
 
+  console.log '→ v'+version
   await Promise.all TXT_HOST_LI.map (host, pos)=>
     console.log prefix+'.'+host
     setTXT(
