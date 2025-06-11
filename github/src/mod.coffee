@@ -25,4 +25,4 @@ export ghGetTxt = (conf)=>
   return r
 
 export ghSet = (conf)=>
-  GH.repos.createOrUpdateFileContent(conf)
+  GH.repos.createOrUpdateFileContents(conf)
