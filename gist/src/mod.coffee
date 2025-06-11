@@ -7,20 +7,20 @@ export class Gist
   get: (id)->
     @gh.gists.get({ gist_id: id })
 
-  set: (filename, key, val)->
-    if key
+  set: (filename, val, gist_id)->
+    if gist_id
       return
 
     files = {}
 
-    files[filename] = { content: val } 
+    files[filename] = { content: val }
 
-    @gh.gists.create {
-      description
+    {data} = await @gh.gists.create {
+      # description: ''
       public: true
       files
     }
-    // return @gh.gists.update({ gist_id: id, files: data })
+    data.url
 
-export default (conf)=>
-  new Gist(conf)
+export default (auth)=>
+  new Gist({auth})

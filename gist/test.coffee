@@ -3,5 +3,10 @@
 import Gist from './lib/mod.js'
 
 gist = Gist process.env.GITHUB_TOKEN
-console.log gist
+console.log await gist.set(
+  'ver.yml'
+  '''
+a b c
+  '''
+)
 
