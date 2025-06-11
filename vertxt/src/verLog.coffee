@@ -11,8 +11,8 @@
   exist = new Set
 
   now_ts = new Date / 1e3
-  beta_ts = now_ts - 15
-  stable_ts = now_ts - 30
+  beta_ts = now_ts - 10
+  stable_ts = now_ts - 20
 
   alpha = 1
 
@@ -32,7 +32,10 @@
         alpha = 0
 
     i[1] = ts = Math.round new Date(date) / 1e3
-    # if ts < stable_ts
+    if ts < stable_ts
+      console.log i
+    if ts < beta_ts
+      console.log i
 
     if dist
       for j from dist.split('|')
