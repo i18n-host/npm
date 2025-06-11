@@ -11,8 +11,8 @@
   exist = new Set
 
   now_ts = new Date / 1e3
-  beta_ts = now_ts - 10
-  stable_ts = now_ts - 20
+  beta_ts = now_ts - 864e3
+  stable_ts = now_ts - 864e3*2
 
   alpha = 1
 
