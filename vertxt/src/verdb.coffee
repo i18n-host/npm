@@ -21,12 +21,15 @@ saver = (conf)=>
     path: project+'.yml'
   }
   r = await ghGetTxt conf
-  if not r
-    return [
-      []
-    ]
-  conf.sha = r[1]
-  return [
-    r[0].trim().split('\n')
-    saver conf
+
+  result = [
+    saver(conf)
   ]
+  if r
+    conf.sha = r[1]
+    result.push [
+      r[0].trim().split('\n')
+    ]
+  else
+    result.push []
+  result
