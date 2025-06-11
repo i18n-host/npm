@@ -53,10 +53,9 @@
         continue
       if ts < before
         pre = can_dist[channel]
-        if pre
-          console.log 'TODO'
-        else
-          can_dist[channel] = [pos, i]
+        if pre and compare(pre[1][0],ver) > 0
+          continue
+        can_dist[channel] = [pos, i]
 
   txt =[
     version
