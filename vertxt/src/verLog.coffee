@@ -49,6 +49,8 @@
         release[j] = ver
 
     for [channel, before] from dist_ts
+      if dist.includes channel
+        continue
       if ts < before
         pre = can_dist[channel]
         if pre
