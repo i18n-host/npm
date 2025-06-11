@@ -1,0 +1,20 @@
+{
+  "name": "@3-/gist",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i18n-host/npm.git"
+  },
+  "homepage": "https://github.com/i18n-host/npm/tree/dev/gist",
+  "author": "i18n.host@gmail.com",
+  "license": "MulanPSL-2.0",
+  "exports": {
+    ".": "./lib/mod.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "*"
+  ],
+  "scripts": {},
+  "type": "module"
+}
