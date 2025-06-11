@@ -16,6 +16,8 @@
 
   alpha = 1
 
+  can_dist = {}
+
   for i,pos in ver_li
     i = i.trim()
     if not i or i.startsWith('#')
@@ -33,16 +35,15 @@
 
     i[1] = ts = Math.round new Date(date) / 1e3
 
-    if dist
-      dist = dist.split('|')
-      i[2] = dist
-      for j from dist
-        t = release[j]
-        if t
-          if compare(t, ver) < 0
-            release[j] = ver
-        else
+    dist = if dist then dist.split('|') else []
+    i[2] = dist
+    for j from dist
+      t = release[j]
+      if t
+        if compare(t, ver) < 0
           release[j] = ver
+      else
+        release[j] = ver
 
     if ts < stable_ts
       console.log i
