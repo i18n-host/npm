@@ -1,6 +1,7 @@
 #!/usr/bin/env coffee
 
-import gist from './lib/mod.js'
+import Gist from './lib/mod.js'
 
-console.log gist()
+gist = Gist process.env.GITHUB_TOKEN
+console.log gist
 
