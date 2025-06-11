@@ -66,6 +66,7 @@
     if not release[i]
       await set i, project, version
       this_release.push i
+
   if this_release.length > 0
     txt.push this_release.join('|')
 
