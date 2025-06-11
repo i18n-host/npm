@@ -8,13 +8,12 @@
   ver_li = if existsSync(ver_yml) then read(ver_yml).trim().split('\n') else []
 
   release = {}
-  exist = new Set
 
   now_ts = new Date / 1e3
 
   beta = now_ts - 864e3
 
-  dist_ts = {
+  dist_ts = Object.entries {
     beta
     stable: beta - 864e3
   }
@@ -30,7 +29,6 @@
     i = i.split(' ')
 
     [ver, date, dist] = i
-    exist.add ver
 
     switch compare(ver, version)
       when 0
@@ -50,14 +48,10 @@
       else
         release[j] = ver
 
-    # if ts < stable_ts
-    #   console.log i
-    #
-    # if ts < beta_ts
-    #   console.log i
+    for [channel, before] from dist_ts
+      if ts < before
+        console.log channel, ts
 
-  if exist.has version
-    return
 
   txt =[
     version
@@ -68,7 +62,7 @@
   if alpha
     await set 'alpha', project, version
 
-  for i from Object.keys dist_ts
+  for [i] from dist_ts
     if not release[i]
       await set i, project, version
       this_release.push i
