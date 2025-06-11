@@ -12,6 +12,7 @@ conf = {
 console.log await ghGetTxt conf
 
 conf.path = 'xxx.yml'
+conf.message = '-'
 conf.content = Buffer.from(
   '123'
   'utf8'
