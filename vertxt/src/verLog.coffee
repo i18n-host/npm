@@ -10,7 +10,8 @@
   release = {}
   exist = new Set
 
-  max_ver = 0
+
+  alpha = 1
 
   for i,pos in ver_li
     i = i.trim()
@@ -19,6 +20,13 @@
     i = i.split(' ')
 
     [ver, date, dist] = i
+    exist.add ver
+
+    switch compare(ver, version)
+      when 0
+        return
+      when 1
+        alpha = 0
 
     i[1] = Math.round new Date(date) / 1e3
     if dist
@@ -28,21 +36,21 @@
           release[j] = t = []
         t.push i
 
-    exist.add i[0]
 
   if exist.has version
     return
 
-  console.log release
+  if alpha
+    await set 'alpha', project, version
+
   # if ver_li.length > 0
   #   ver_li.sort (a,b)=>
   #     compare(a[0],b[0])
   #
   #   if compare(ver_li.at(-1)[0], version) < 0
-  #     await set 'alpha', project, version
   #
   # console.log ver_li
-  #
+
   ver_li.push "#{version} #{(new Date).toISOString().slice(0,10)}"
   write(ver_yml, ver_li.join('\n'))
 
