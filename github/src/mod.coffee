@@ -11,17 +11,20 @@ export GH = new Octokit({
 # { owner, repo, path, ref }
 export ghGet = (conf)=>
   try
-    r = await GH.repos.getContent(conf)
+    {data} = await GH.repos.getContent(conf)
   catch err
     if err?.response?.status == 404
       return
     throw err
-  return Buffer.from r.data.content,'base64'
+  return [
+    Buffer.from(data.content,data.encoding)
+    data.sha
+  ]
 
 export ghGetTxt = (conf)=>
   r = await ghGet(conf)
   if r
-    r = utf8d r
+    r[0] = utf8d r[0]
   return r
 
 export ghSet = (conf)=>
