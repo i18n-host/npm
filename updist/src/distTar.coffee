@@ -60,10 +60,12 @@ export default (project, version, sk_fp, dir, filepath)=>
             # )
           ]).finally =>
             try
-              console.log '>>>', project, ver, out_tar
-            finally
-              rmSync dir, recursive:true, force:true
-              resolve()
+              console.log '>>>', project, version, out_tar
+            catch err
+              reject err
+              return
+            rmSync dir, recursive:true, force:true
+            resolve()
             return
           return
         return
