@@ -13,5 +13,4 @@ set -x
 
 bun x cep -c src -o lib
 
-./lib/warmup.js
-# ./lib/mod.js i18 0.2.1 ../../conf/i18/ed25519/sk /tmp/bin/i18/0.1.0/aarch64-apple-darwin
+./lib/mod.js i18 0.1.19 ../../conf/env/upgrade/sk /tmp/bin/i18/0.1.19/aarch64-apple-darwin

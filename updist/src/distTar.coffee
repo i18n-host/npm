@@ -45,22 +45,25 @@ export default (project, version, sk_fp, dir, filepath)=>
         s.on 'finish', =>
           console.log out_tar
           Promise.all([
-            s3put(
-              project
-              version
-              out_tar
-            )
-            ghRelease(
-              GITHUB_TOKEN
-              GITHUB_OWNER
-              GITHUB_REPO
-              project
-              version
-              out_tar
-            )
+            # s3put(
+            #   project
+            #   version
+            #   out_tar
+            # )
+            # ghRelease(
+            #   GITHUB_TOKEN
+            #   GITHUB_OWNER
+            #   GITHUB_REPO
+            #   project
+            #   version
+            #   out_tar
+            # )
           ]).finally =>
-            rmSync dir, recursive:true, force:true
-            resolve()
+            try
+              console.log out_tar
+            finally
+              rmSync dir, recursive:true, force:true
+              resolve()
             return
           return
         return
