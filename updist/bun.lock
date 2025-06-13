@@ -9,6 +9,7 @@
         "@3-/ossput": "^0.1.10",
         "@3-/utf8": "^0.0.4",
         "@3-/vb": "^0.1.6",
+        "@8v/curl": "^0.1.7",
         "simple-zstd": "^1.4.2",
         "tar": "^7.4.3",
         "yargs": "^18.0.0",
@@ -28,6 +29,8 @@
     "@3-/utf8": ["@3-/utf8@0.0.4", "", {}, "sha512-hoVIOCX70JteiRPzRZ8Yw51kb/H9dWxx55oW+RQ38hHE8+/uOIriJZ024HhCYaLDKykUyDoknRbzKjjMQ++new=="],
 
     "@3-/vb": ["@3-/vb@0.1.6", "", {}, "sha512-oxv/UD8RR/H9k8RaOA+3fqNuhPhrEZL+xDjtrHt+kZK8W4AEp/NcGBcNU1JtIG6/MQvEJ5IeHq9i7SX1JBA++Q=="],
+
+    "@8v/curl": ["@8v/curl@0.1.7", "", {}, "sha512-JmS4lp5BqHFQe23zWG+NP72gQClmFaBj8mnjoheAU60hK9AIRdtD6B19wX78vhHgaBPySt6FO5wc/84/WGY9Bg=="],
 
     "@aws-crypto/crc32": ["@aws-crypto/crc32@5.2.0", "", { "dependencies": { "@aws-crypto/util": "^5.2.0", "@aws-sdk/types": "^3.222.0", "tslib": "^2.6.2" } }, "sha512-nLbCWqQNgUiwwtFsen1AdzAtvuLRsQS8rYgMuxCrdKf9kOssamGLuPwyTY9wyYblNr9+1XM8v6zoDTPPSIeANg=="],
 

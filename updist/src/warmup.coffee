@@ -1,9 +1,11 @@
 #!/usr/bin/env coffee
 
+> @8v/curl
+
 {DOWN_HOST_LI} = process.env
 
 project = "i18"
-ver = "1.2.3"
+ver = "0.1.41"
 platform = "x86_64-unknown-linux-musl"
 
 url_li = []
@@ -24,5 +26,18 @@ for i in DOWN_HOST_LI.split(';')
   else
     url_li.push "#{i}"
 
-console.log url_li.map (i)=>
-  "https://#{i}/#{project}/#{ver}/#{platform}.tar"
+err_li = []
+
+await Promise.allSettled url_li.map (host)=>
+  url = "https://#{host}/#{project}/#{ver}/#{platform}.tar"
+  try
+    r = await curl(url)
+  catch err
+    err_li.push [i,err]
+    return
+  console.log host, r.status
+  return
+
+if err_li.length
+  for i from err_li
+    console.error ...i
