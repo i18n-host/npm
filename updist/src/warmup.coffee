@@ -1,6 +1,7 @@
 #!/usr/bin/env coffee
 
 > @8v/curl
+  @3-/sleep
 
 {DOWN_HOST_LI} = process.env
 
@@ -9,6 +10,7 @@ export default warmup = (
   project
   ver
   platform
+  size
 )=>
   url_li = []
 
@@ -30,19 +32,31 @@ export default warmup = (
 
   err_li = []
 
-  await Promise.allSettled url_li.map (host)=>
-    url = "https://#{host}/#{project}/#{ver}/#{platform}.tar"
-    try
-      r = await curl(url)
-    catch err
-      err_li.push ['❌',url,err.toString()]
+  retry = 100
+  loop
+    next_li = []
+    await Promise.allSettled url_li.map (host)=>
+      url = "https://#{host}/#{project}/#{ver}/#{platform}.tar"
+      try
+        r = await curl(url)
+      catch err
+        err_li.push ['❌',url,err.toString()]
+        return
+      filesize = +(r.headers.get('content-length') or 0)
+      if filesize
+      else
+        next_li.push url
+
+      console.log host, r.status, typeof filesize
       return
-    console.log host, r.status, r.headers.get('content-length')
-    return
+    if next_li.length == 0
+      break
+    await sleep 1e4
+    url_li = next_li
 
   for i from err_li
     console.error ...i
   return err_li.length
 
 if process.argv[1] == decodeURI (new URL(import.meta.url)).pathname
-  await warmup 'i18','0.1.41','x86_64-unknown-linux-musl'
+  await warmup 'i18','0.1.41','x86_64-unknown-linux-musl',4077056
