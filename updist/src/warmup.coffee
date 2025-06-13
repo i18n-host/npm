@@ -3,6 +3,9 @@
 > @8v/curl
   @3-/sleep
   fs > statSync
+  @3-/retry
+
+retryCurl = retry curl
 
 {DOWN_HOST_LI} = process.env
 
@@ -40,7 +43,7 @@ warmup = (
     await Promise.allSettled url_li.map (host)=>
       url = "https://#{host}/#{project}/#{ver}/#{platform}.tar"
       try
-        r = await curl(url)
+        r = await retryCurl(url)
       catch err
         err_li.push ['❌',url,err.toString()]
         return
