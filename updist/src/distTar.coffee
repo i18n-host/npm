@@ -2,9 +2,10 @@
   @3-/ed25519_ph:Ed25519
   fs > readFileSync createReadStream createWriteStream existsSync unlinkSync rmSync writeFileSync
   tar > c:createTar
-  path > join
+  path > join basename
   @3-/gh_release:ghRelease
   ./s3put.js
+  ./warmup.js
 
 {
   GITHUB_TOKEN
@@ -60,11 +61,11 @@ export default (project, version, sk_fp, dir, filepath)=>
             # )
           ]).finally =>
             try
-              console.log '>>>', project, version, out_tar
+              await warmup project, version, basename(dir), out_tar
+              rmSync dir, recursive:true, force:true
             catch err
               reject err
               return
-            rmSync dir, recursive:true, force:true
             resolve()
             return
           return
