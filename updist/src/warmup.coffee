@@ -2,6 +2,7 @@
 
 > @8v/curl
   @3-/sleep
+  fs > statSync
 
 {DOWN_HOST_LI} = process.env
 
@@ -51,8 +52,14 @@ warmup = (
         # wait for perpare
         next_li.push url
       return
+
     if next_li.length == 0
       break
+
+    if --retry < 0
+      err_li.push ['❌',next_li.join('/'),'NO',CONTENT_LENGTH]
+      break
+
     await sleep 1e4
     url_li = next_li
 
@@ -66,6 +73,10 @@ export default (
   platform
   tar_path
 )=>
-  console.log(tar_path)
-# if process.argv[1] == decodeURI (new URL(import.meta.url)).pathname
+  warmup(
+    project
+    ver
+    platform
+    statSync(tar_path).size
+  )
 #   await warmup 'i18','0.1.41','x86_64-unknown-linux-musl',4077056

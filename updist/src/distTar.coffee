@@ -46,22 +46,23 @@ export default (project, version, sk_fp, dir, filepath)=>
         s.on 'finish', =>
           console.log out_tar
           Promise.all([
-            # s3put(
-            #   project
-            #   version
-            #   out_tar
-            # )
-            # ghRelease(
-            #   GITHUB_TOKEN
-            #   GITHUB_OWNER
-            #   GITHUB_REPO
-            #   project
-            #   version
-            #   out_tar
-            # )
+            s3put(
+              project
+              version
+              out_tar
+            )
+            ghRelease(
+              GITHUB_TOKEN
+              GITHUB_OWNER
+              GITHUB_REPO
+              project
+              version
+              out_tar
+            )
           ]).finally =>
             try
-              await warmup project, version, basename(dir), out_tar
+              if await warmup(project, version, basename(dir), out_tar) > 0
+                throw new Error('warmup failed')
               rmSync dir, recursive:true, force:true
             catch err
               reject err
