@@ -37,11 +37,12 @@ export default warmup = (
     catch err
       err_li.push ['❌',url,err.toString()]
       return
-    console.log host, r.status
+    console.log host, r.status, r.headers.get('content-length')
     return
 
   for i from err_li
     console.error ...i
   return err_li.length
 
-# await warmup 'i18','0.1.41','x86_64-unknown-linux-musl'
+if process.argv[1] == decodeURI (new URL(import.meta.url)).pathname
+  await warmup 'i18','0.1.41','x86_64-unknown-linux-musl'
