@@ -5,6 +5,7 @@
 
 {DOWN_HOST_LI} = process.env
 
+CONTENT_LENGTH = 'content-length'
 
 export default warmup = (
   project
@@ -42,11 +43,12 @@ export default warmup = (
       catch err
         err_li.push ['❌',url,err.toString()]
         return
-      filesize = +(r.headers.get('content-length') or 0)
+      filesize = +(r.headers.get(CONTENT_LENGTH) or 0)
       if filesize
+        if filesize != size
+          err_li.push ['❌',url,CONTENT_LENGTH,filesize,'!=',size]
       else
         next_li.push url
-
       console.log host, r.status, typeof filesize
       return
     if next_li.length == 0
