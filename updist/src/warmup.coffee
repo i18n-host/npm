@@ -33,7 +33,7 @@ await Promise.allSettled url_li.map (host)=>
   try
     r = await curl(url)
   catch err
-    err_li.push [i,err.toString()]
+    err_li.push ['❌',url,err.toString()]
     return
   console.log host, r.status
   return
