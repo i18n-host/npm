@@ -48,8 +48,8 @@ export default warmup = (
         if filesize != size
           err_li.push ['❌',url,CONTENT_LENGTH,filesize,'!=',size]
       else
+        # wait for perpare
         next_li.push url
-      console.log host, r.status, typeof filesize
       return
     if next_li.length == 0
       break
