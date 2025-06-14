@@ -43,16 +43,17 @@ warmup = (
   loop
     next_li = []
     await Promise.allSettled url_li.map (url)=>
-      console.log url
       try
         r = await retryCurl(url)
       catch err
         err_li.push ['❌',url,err.toString()]
         return
       filesize = +(r.headers.get(CONTENT_LENGTH) or 0)
+      if filesize == size
+        return
+      console.log r.status, url, 'size', filesize
       if filesize
-        if filesize != size
-          err_li.push ['❌',url,CONTENT_LENGTH,filesize,'!=',size]
+        err_li.push ['❌',url,CONTENT_LENGTH,filesize,'!=',size]
       else
         # wait for perpare
         next_li.push url
