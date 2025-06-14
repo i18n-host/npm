@@ -50,11 +50,14 @@ warmup = (
         return
       filesize = +(r.headers.get(CONTENT_LENGTH) or 0)
       if filesize == size
+        console.log '✅', url
         return
+
       {status} = r
       if filesize > 0 and filesize != size and status == 200
         err_li.push ['❌', status, url, CONTENT_LENGTH, filesize,'!=',size]
         return
+
       console.log status, url, 'size', filesize
       # wait for perpare
       next_li.push url
