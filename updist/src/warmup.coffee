@@ -52,7 +52,7 @@ warmup = (
       if filesize == size
         return
       if filesize
-        err_li.push ['❌',r.status,url,CONTENT_LENGTH,filesize,'!=',size]
+        err_li.push ['❌', r.status, url, CONTENT_LENGTH, filesize,'!=',size]
       else
         console.log r.status, url, 'size', filesize
         # wait for perpare
