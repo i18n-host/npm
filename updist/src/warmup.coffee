@@ -86,4 +86,5 @@ export default (
     statSync(tar_path).size
   )
 
-await warmup 'i18','0.1.41','x86_64-unknown-linux-musl',4077056
+# if process.argv[1] == decodeURI (new URL(import.meta.url)).pathname
+#   await warmup 'i18','0.1.41','x86_64-unknown-linux-musl',4077056
