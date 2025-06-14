@@ -1,6 +1,6 @@
 {
   "name": "@3-/updist",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/i18n-host/npm.git"
