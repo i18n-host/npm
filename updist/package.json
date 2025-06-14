@@ -1,6 +1,6 @@
 {
   "name": "@3-/updist",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/i18n-host/npm.git"
@@ -19,7 +19,7 @@
   "dependencies": {
     "@3-/ed25519_ph": "^0.1.4",
     "@3-/gh_release": "^0.1.4",
-    "@3-/ossput": "^0.1.12",
+    "@3-/ossput": "^0.1.13",
     "@3-/retry": "^0.0.2",
     "@3-/sleep": "^0.0.4",
     "@3-/utf8": "^0.0.4",
