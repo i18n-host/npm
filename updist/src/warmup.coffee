@@ -52,7 +52,7 @@ warmup = (
       if filesize == size
         return
       {status} = r
-      if filesize != size and status == 200
+      if filesize > 0 and filesize != size and status == 200
         err_li.push ['❌', status, url, CONTENT_LENGTH, filesize,'!=',size]
         return
       console.log status, url, 'size', filesize
