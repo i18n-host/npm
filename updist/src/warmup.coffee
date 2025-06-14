@@ -4,6 +4,7 @@
   @3-/sleep
   fs > statSync
   @3-/retry
+  ./numLi.js
 
 retryCurl = retry curl
 
@@ -25,23 +26,24 @@ warmup = (
     if first_char >= 'A' and first_char <= 'Z'
       continue
 
-    m = i.match /^(.*)\[(\d+)-(\d+)\](.*)$/
+    m = i.match /^(.*)\[([^\]]*)](.*)$/
     if m
-      [_, prefix, begin, end, remain] = m
-      begin = +begin
-      end = +end
-      for i in [begin..end]
+      [_, prefix, range, remain] = m
+      for i in numLi(range)
         url_li.push "#{prefix}#{i}#{remain}"
     else
       url_li.push "#{i}"
 
   err_li = []
 
-  retry = 100
+  url_li = url_li.map (host)=>
+    "https://#{host}/#{project}/#{ver}/#{platform}.tar"
+
+  retryed = 100
   loop
     next_li = []
-    await Promise.allSettled url_li.map (host)=>
-      url = "https://#{host}/#{project}/#{ver}/#{platform}.tar"
+    await Promise.allSettled url_li.map (url)=>
+      console.log url
       try
         r = await retryCurl(url)
       catch err
@@ -59,7 +61,7 @@ warmup = (
     if next_li.length == 0
       break
 
-    if --retry < 0
+    if --retryed < 0
       err_li.push ['❌',next_li.join('/'),'NO',CONTENT_LENGTH]
       break
 
@@ -82,4 +84,5 @@ export default (
     platform
     statSync(tar_path).size
   )
-#   await warmup 'i18','0.1.41','x86_64-unknown-linux-musl',4077056
+
+await warmup 'i18','0.1.41','x86_64-unknown-linux-musl',4077056

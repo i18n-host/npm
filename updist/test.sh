@@ -13,5 +13,6 @@ set -x
 
 bun x cep -c src -o lib
 
-ver=0.1.41
-./lib/mod.js i18 $ver ../../conf/env/upgrade/sk /tmp/bin/i18/0.1.19/aarch64-apple-darwin
+./lib/warmup.js
+# ver=0.1.41
+# ./lib/mod.js i18 $ver ../../conf/env/upgrade/sk /tmp/bin/i18/0.1.19/aarch64-apple-darwin
