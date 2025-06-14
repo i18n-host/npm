@@ -39,7 +39,7 @@ warmup = (
   url_li = url_li.map (host)=>
     "https://#{host}/#{project}/#{ver}/#{platform}.tar"
 
-  retryed = 50
+  retryed = 30
   loop
     next_li = []
     await Promise.allSettled url_li.map (url)=>
