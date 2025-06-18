@@ -4,13 +4,10 @@
 < (project, version, duration)=>
   r = await released project, version, duration
 
-  console.log r
-
   if not r
     return
 
   [
-
     release
     dist
     save
@@ -21,10 +18,8 @@
     for i in Object.values channel_ver
       ver_set.add i
 
-  console.log ver_set
-
-
-  # for [channel, ver] from Object.entries dist
-  #   await setTXT channel, project, ver
-  # await save()
+  # return
+  for [channel, ver] from Object.entries dist
+    await setTXT channel, project, ver
+  await save()
   return
