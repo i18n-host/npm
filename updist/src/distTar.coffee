@@ -1,9 +1,9 @@
 > @3-/vb/vbE.js
   @3-/ed25519_ph:Ed25519
-  fs > readFileSync createReadStream createWriteStream existsSync unlinkSync rmSync writeFileSync
-  tar > c:createTar
-  path > join basename
   @3-/gh_release:ghRelease
+  fs > readFileSync createReadStream createWriteStream existsSync unlinkSync rmSync writeFileSync
+  path > join basename
+  tar > c:createTar
   ./s3put.js
   ./warmup.js
 
