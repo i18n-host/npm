@@ -5,9 +5,9 @@
 daystr = (date)=>date.toISOString().slice(0,10)
 
 < (project, version, duration)=>
-
   r = await released project, version, duration
-  if r
+  if not r
+    return
 
   txt =[
     version
