@@ -1,7 +1,9 @@
 #!/usr/bin/env coffee
 
 > ./verdb.js
+  ./setTXT.js
   semver > compare
+
 
 DAY = 864e5
 
