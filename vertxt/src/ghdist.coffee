@@ -21,13 +21,19 @@ TMP = '/tmp/vertxt'
   cd TMP
   await $"git clone --depth=1 https://#{GITHUB_TOKEN}@github.com/#{GITHUB_OWNER}/#{project}.git"
 
+  prefix = join TMP, project
+
+  rmSync prefix, {
+    recursive: true, force: true
+  }
+
   await Promise.all(
     [...ver_set].map (ver)=>
       down(
         GITHUB_OWNER
         GITHUB_REPO
         project+'-'+ver
-        TMP
+        join prefix, ver
       )
   )
   console.log project, ver_set
