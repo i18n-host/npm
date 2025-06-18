@@ -43,9 +43,9 @@ daystr = (date)=>date.toISOString().slice(0,10)
         alpha = 0
 
     i[1] = ts = Math.round new Date(date) / DAY
-
     dist = if dist then dist.split('|') else []
     i[2] = dist
+
     for j from dist
       t = release[j]
       if t
