@@ -24,7 +24,8 @@ TMP = '/tmp/vertxt'
   prefix = join gitdir, project
 
   rmSync prefix, {
-    recursive: true, force: true
+    recursive: true
+    force: true
   }
 
   await Promise.all(
