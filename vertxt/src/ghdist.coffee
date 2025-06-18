@@ -13,13 +13,16 @@
 
 TMP = '/tmp/vertxt'
 
+
 < (project, ver_set) =>
   ver_set.delete '0.1.53'
   gitdir = join TMP,project
   rmSync gitdir, {recursive: true, force: true}
   mkdirSync TMP, {recursive: true}
   cd TMP
+  $.verbose = false # 避免token泄露
   await $"git clone --depth=1 https://#{GITHUB_TOKEN}@github.com/#{GITHUB_OWNER}/#{project}.git"
+  $.verbose = true
 
   prefix = join gitdir, project
 
@@ -40,9 +43,9 @@ TMP = '/tmp/vertxt'
       )
   )
   cd gitdir
-  mv '.git/config', '.'
+  await $'mv .git/config .'
   rmSync '.git', {recursive: true, force: true}
   await $'git init'
-  mv 'config','.git/'
-  console.log project, ver_set
+  await $'mv config .git/ && git add . && git commit -m. && git push -f'
+  return
 
