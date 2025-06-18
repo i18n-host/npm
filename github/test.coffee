@@ -1,15 +1,21 @@
 #!/usr/bin/env coffee
 
-import {GH,ghGetTxt,ghSet} from './lib/mod.js'
+import down from './lib/releaseLs.js'
 
-conf = {
-  owner:'i18n-host',
-  repo:'i18',
-  # branch:'dev',
-  path:'test.sh'
-}
+console.log await down(
+  'up51'
+  'i18'
+  'dev'
+)
 
-console.log await ghGetTxt conf
+# conf = {
+#   owner:'up51',
+#   repo:'i18',
+#   # branch:'dev',
+#   # path:'test.sh'
+# }
+#
+# console.log await down conf
 
 # conf.sha = "a70488abd3734dd5566d19bb4ef022538f232376"
 # conf.path = 'Cargo.lock1'
