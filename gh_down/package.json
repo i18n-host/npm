@@ -18,6 +18,7 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
+    "@3-/wget": "^0.1.17",
     "@8v/curl": "^0.1.7"
   }
 }

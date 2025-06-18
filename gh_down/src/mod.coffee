@@ -1,6 +1,7 @@
 > @8v/curl/cJson.js
-  fs > rmSync mkdirSync
+  fs > rmSync mkdirSync createWriteStream
   path > basename join
+  @3-/wget
 
 export ghReleaseUrlLi = (org, repo, tag)=>
   r = await cJson(
@@ -13,12 +14,10 @@ export default (org, repo, tag, to_dir) =>
   li = await ghReleaseUrlLi(
     org, repo, tag
   )
-  mkdirSync to_dir, { recursive: true }
   Promise.all(
     li.map (url)=>
-      to_file = join to_dir, basename url
-      console.log to_file
-      # curl(
-      #   url, to_dir
-      # )
+      wget(
+        url
+        join to_dir, basename url
+      )
   )
