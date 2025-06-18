@@ -1,0 +1,17 @@
+{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "@3-/gh_down",
+      "dependencies": {
+        "@3-/wget": "^0.1.17",
+        "@8v/curl": "^0.1.7",
+      },
+    },
+  },
+  "packages": {
+    "@3-/wget": ["@3-/wget@0.1.17", "", {}, "sha512-iv/yayCKQwDhBg6FA/Wu+hLPZkA2n27dOJNT9uNi1doTxbK9241j+Y0MpaDTufl8z44I9tbocfxxNOsx/jrFlQ=="],
+
+    "@8v/curl": ["@8v/curl@0.1.7", "", {}, "sha512-JmS4lp5BqHFQe23zWG+NP72gQClmFaBj8mnjoheAU60hK9AIRdtD6B19wX78vhHgaBPySt6FO5wc/84/WGY9Bg=="],
+  }
+}
