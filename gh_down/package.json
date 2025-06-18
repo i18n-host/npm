@@ -1,11 +1,11 @@
 {
-  "name": "@3-/ghDown",
+  "name": "@3-/gh_down",
   "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/i18n-host/npm.git"
   },
-  "homepage": "https://github.com/i18n-host/npm/tree/dev/ghDown",
+  "homepage": "https://github.com/i18n-host/npm/tree/dev/gh_down",
   "author": "i18n.host@gmail.com",
   "license": "MulanPSL-2.0",
   "exports": {
