@@ -11,7 +11,9 @@
   console.log url_li
   Promise.all url_li.map (url)=>
     fp = join to_dir, basename(url)
+    r = await fetch(url)
     stream = createWriteStream fp
+    console.log r.status
 
 
     return
