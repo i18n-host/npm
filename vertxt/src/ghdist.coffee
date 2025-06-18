@@ -13,7 +13,6 @@
 
 TMP = '/tmp/vertxt'
 
-
 < (project, ver_set) =>
   ver_set.delete '0.1.53'
   gitdir = join TMP,project
