@@ -16,5 +16,8 @@
     "*"
   ],
   "scripts": {},
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@8v/curl": "^0.1.7"
+  }
 }
