@@ -1,5 +1,6 @@
 > ./setTXT.js
   ./released.js
+  ./ghdist.js
 
 < (project, version, duration)=>
   r = await released project, version, duration
@@ -17,6 +18,8 @@
   for channel_ver from [release, dist]
     for i in Object.values channel_ver
       ver_set.add i
+
+  ghdist(project, ver_set)
 
   # return
   for [channel, ver] from Object.entries dist
