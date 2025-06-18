@@ -3,6 +3,7 @@
 > zx/globals:
   path > join
   fs > rmSync mkdirSync
+  @3-/gh_down:down
 
 {
   GITHUB_OWNER
@@ -18,7 +19,16 @@ TMP = '/tmp/vertxt'
   rmSync to, {recursive: true, force: true}
   mkdirSync TMP, {recursive: true}
   cd TMP
-  await $"git clone https://#{GITHUB_TOKEN}@github.com/#{GITHUB_OWNER}/#{GITHUB_REPO}.git"
+  await $"git clone --depth=1 https://#{GITHUB_TOKEN}@github.com/#{GITHUB_OWNER}/#{project}.git"
 
+  await Promise.all(
+    [...ver_set].map (ver)=>
+      down(
+        GITHUB_OWNER
+        GITHUB_REPO
+        project+'-'+ver
+        TMP
+      )
+  )
   console.log project, ver_set
 
