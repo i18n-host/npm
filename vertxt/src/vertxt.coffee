@@ -32,6 +32,7 @@ daystr = (date)=>date.toISOString().slice(0,10)
     await setTXT 'alpha', project, version
 
   for [i] from dist_ts
+    # 首次发布
     if not release[i]
       await setTXT i, project, version
       this_release.push i
