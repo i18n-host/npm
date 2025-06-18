@@ -13,4 +13,4 @@ set -ex
 
 bun x cep -c src -o lib
 
-./lib/mod.js i18 0.1.6 9
+./lib/mod.js i18 0.1.9 9

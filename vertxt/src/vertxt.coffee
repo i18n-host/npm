@@ -16,8 +16,8 @@
     save
   ] = r
 
-  for [channel, ver] from Object.entries dist
-    await setTXT channel, project, ver
-
-  await save()
+  console.log release, dist
+  # for [channel, ver] from Object.entries dist
+  #   await setTXT channel, project, ver
+  # await save()
   return

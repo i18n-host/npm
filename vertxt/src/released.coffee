@@ -57,6 +57,7 @@ daystr = (date)=>date.toISOString().slice(0,10)
     for [channel, before] from dist_ts
       if dist.includes channel
         continue
+      console.log channel, ts, before
       if ts < before
         pre = can_dist[channel]
         if pre and compare(pre[1][0],ver) > 0
