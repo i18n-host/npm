@@ -6,6 +6,8 @@
 
 DAY = 864e5
 
+daystr = (date)=>date.toISOString().slice(0,10)
+
 < (project, version, duration)=>
   [
     verSet
@@ -61,11 +63,36 @@ DAY = 864e5
           continue
         can_dist[channel] = [pos, i]
 
+  dist = {}
+  if alpha
+    dist.alpha = version
+
+  this_release = []
+  for [i] from dist_ts
+    # 首次发布
+    if not release[i]
+      dist[i] = version
+      delete can_dist[i]
+      this_release.push i
+
+  for [channel, [pos, i]] from Object.entries can_dist
+    if compare(release[channel], i[0]) < 0
+      dist[channel] =  i[0]
+      i[2].push channel
+      ver_li[pos] = i[0]+' '+daystr(new Date(i[1]*DAY))+' '+i[2].join('|')
+
+  txt =[
+    version
+    daystr(new Date)
+  ]
+  if this_release.length > 0
+    txt.push this_release.join('|')
+
+  ver_li.push txt.join(' ')
+
   return [
-    verSet
     release
-    dist_ts
-    alpha
-    can_dist
-    ver_li
+    dist
+    =>
+      verSet(ver_li.join('\n'))
   ]
