@@ -5,7 +5,7 @@ import down from './lib/releaseLs.js'
 console.log await down(
   'up51'
   'i18'
-  'dev'
+  'i18-0.1.52'
 )
 
 # conf = {

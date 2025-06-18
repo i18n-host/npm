@@ -8,7 +8,7 @@
     repo: name
     tag
   })
-  console.log
+  console.log r
   # await mkdir tag, { recursive: true }
   # for asset in rel.assets
   #   console.log "↓ #{asset.name}"
