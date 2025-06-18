@@ -1,4 +1,4 @@
-> ./set.js
+> ./setTXT.js
   semver > compare
   ./released.js
 
@@ -9,6 +9,12 @@ daystr = (date)=>date.toISOString().slice(0,10)
   if not r
     return
 
+  [
+
+    verSet
+    release
+  ] = r
+
   txt =[
     version
     daystr(new Date)
@@ -16,11 +22,11 @@ daystr = (date)=>date.toISOString().slice(0,10)
 
   this_release = []
   if alpha
-    await set 'alpha', project, version
+    await setTXT 'alpha', project, version
 
   for [i] from dist_ts
     if not release[i]
-      await set i, project, version
+      await setTXT i, project, version
       this_release.push i
       delete can_dist[i]
 
@@ -29,7 +35,7 @@ daystr = (date)=>date.toISOString().slice(0,10)
 
   for [channel, [pos, i]] from Object.entries can_dist
     if compare(release[channel], i[0]) < 0
-      await set channel, project, i[0]
+      await setTXT channel, project, i[0]
       i[2].push channel
       # 不修改i[2]为字符串，避免一个版本发布多个频道的时候出错
       ver_li[pos] = i[0]+' '+daystr(new Date(i[1]*864e5))+' '+i[2].join('|')

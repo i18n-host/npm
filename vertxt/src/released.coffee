@@ -61,5 +61,7 @@ DAY = 864e5
         can_dist[channel] = [pos, i]
 
   return [
-
+    verSet
+    release
+    alpha
   ]
