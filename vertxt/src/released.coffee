@@ -1,10 +1,11 @@
 #!/usr/bin/env coffee
 
 > ./verdb.js
+  semver > compare
 
 DAY = 864e5
 
-< (project, version)=>
+< (project, version, duration)=>
   [
     verSet
     ver_li
@@ -58,3 +59,4 @@ DAY = 864e5
         if pre and compare(pre[1][0],ver) > 0
           continue
         can_dist[channel] = [pos, i]
+

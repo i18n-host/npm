@@ -1,13 +1,13 @@
 > ./set.js
-  fs > existsSync
-  @3-/write
-  @3-/read
   semver > compare
-
+  ./released.js
 
 daystr = (date)=>date.toISOString().slice(0,10)
 
 < (project, version, duration)=>
+
+  r = await released project, version, duration
+  if r
 
   txt =[
     version
