@@ -1,5 +1,5 @@
 > @8v/curl/cJson.js
-
+  fs > rmSync mkdirSync
 
 export ghReleaseUrlLi = (org, repo, tag)=>
   r = await cJson(
@@ -12,5 +12,11 @@ export default (org, repo, tag, to_dir) =>
   li = await ghReleaseUrlLi(
     org, repo, tag
   )
-  console.log li
-  return
+  rmSync to_dir, { recursive: true, force: true }
+  mkdirSync to_dir { recursive: true }
+  Promise.all(
+    li.map (url)=>
+      curl(
+        url, to_dir
+      )
+  )
