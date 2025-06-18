@@ -64,6 +64,7 @@ daystr = (date)=>date.toISOString().slice(0,10)
           continue
         can_dist[channel] = [pos, i]
 
+  console.log release
   txt =[
     version
     daystr(new Date)
