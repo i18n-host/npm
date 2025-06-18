@@ -6,6 +6,9 @@ daystr = (date)=>date.toISOString().slice(0,10)
 
 < (project, version, duration)=>
   r = await released project, version, duration
+
+  console.log r
+
   if not r
     return
 
@@ -13,6 +16,10 @@ daystr = (date)=>date.toISOString().slice(0,10)
 
     verSet
     release
+    dist_ts
+    alpha
+    can_dist
+    ver_li
   ] = r
 
   txt =[

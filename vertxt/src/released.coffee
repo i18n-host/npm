@@ -4,7 +4,6 @@
   ./setTXT.js
   semver > compare
 
-
 DAY = 864e5
 
 < (project, version, duration)=>
@@ -65,5 +64,8 @@ DAY = 864e5
   return [
     verSet
     release
+    dist_ts
     alpha
+    can_dist
+    ver_li
   ]
