@@ -1,9 +1,16 @@
 > @8v/curl/cJson.js
 
-export default (org, repo, tag, to_dir) =>
+
+export ghReleaseUrlLi = (org, repo, tag)=>
   r = await cJson(
     "https://api.github.com/repos/#{org}/#{repo}/releases/tags/#{tag}"
   )
-  for i from r.assets
-    console.log i.browser_download_url
+  r.assets.map (i)=>
+    i.browser_download_url
+
+export default (org, repo, tag, to_dir) =>
+  li = await ghReleaseUrlLi(
+    org, repo, tag
+  )
+  console.log li
   return
