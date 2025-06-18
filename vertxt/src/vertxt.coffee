@@ -1,70 +1,14 @@
 > ./set.js
-  ./verdb.js
   fs > existsSync
   @3-/write
   @3-/read
   semver > compare
 
-DAY = 864e5
 
 daystr = (date)=>date.toISOString().slice(0,10)
 
 < (project, version, duration)=>
-  [
-    verSet
-    ver_li
-  ] = await verdb(project)
 
-  release = {}
-
-  now_ts = new Date / DAY
-
-  beta = now_ts - duration
-
-  dist_ts = Object.entries {
-    beta
-    stable: beta - duration
-  }
-
-  alpha = 1
-
-  can_dist = {}
-  for i,pos in ver_li
-    i = i.trim()
-    if not i or i.startsWith('#')
-      continue
-    i = i.split(' ')
-
-    [ver, date, dist] = i
-
-    switch compare(ver, version)
-      when 0
-        return
-      when 1
-        alpha = 0
-
-    i[1] = ts = Math.round new Date(date) / DAY
-
-    dist = if dist then dist.split('|') else []
-    i[2] = dist
-    for j from dist
-      t = release[j]
-      if t
-        if compare(t, ver) < 0
-          release[j] = ver
-      else
-        release[j] = ver
-
-    for [channel, before] from dist_ts
-      if dist.includes channel
-        continue
-      if ts < before
-        pre = can_dist[channel]
-        if pre and compare(pre[1][0],ver) > 0
-          continue
-        can_dist[channel] = [pos, i]
-
-  console.log release
   txt =[
     version
     daystr(new Date)
@@ -88,7 +32,7 @@ daystr = (date)=>date.toISOString().slice(0,10)
       await set channel, project, i[0]
       i[2].push channel
       # 不修改i[2]为字符串，避免一个版本发布多个频道的时候出错
-      ver_li[pos] = i[0]+' '+daystr(new Date(i[1]*DAY))+' '+i[2].join('|')
+      ver_li[pos] = i[0]+' '+daystr(new Date(i[1]*864e5))+' '+i[2].join('|')
 
   ver_li.push txt.join(' ')
   await verSet(ver_li.join('\n'))
