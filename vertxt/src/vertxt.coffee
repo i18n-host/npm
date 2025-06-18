@@ -19,9 +19,10 @@
     for i in Object.values channel_ver
       ver_set.add i
 
-  ghdist(project, ver_set)
+  await ghdist(project, ver_set)
 
-  # return
+  return
+
   for [channel, ver] from Object.entries dist
     await setTXT channel, project, ver
   await save()
